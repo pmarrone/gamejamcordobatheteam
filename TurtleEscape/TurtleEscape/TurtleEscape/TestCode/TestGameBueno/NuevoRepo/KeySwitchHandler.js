@@ -16,7 +16,7 @@ function KeySwitchHandler(keyOne,keyTwo){
 	
      
 	this.impulse = 0;
-	this.resetImpulse = 20;
+	this.resetImpulse = 10;
 	this.currentKeyTime;
 	
 	//User is switching keys on time
@@ -66,48 +66,48 @@ function KeySwitchHandler(keyOne,keyTwo){
 		//debug("1 pressed: " + this.isKeyOnePressed + " 2 pressed: " + this.isKeyTwoPressed);
 		
 	}
-	
-	this.update = function()
-	{
-		getImpulse = false;
-		if ((this.stage == 0 ||this.stage == -1) &&  this.isKeyOnePressed && this.isKeyTwoPressed) {
-			this.stage = 0;			
-		} else if (this.stage == 0 && this.isKeyOnePressed && !this.isKeyTwoPressed) {
-			this.stage = 1;	
-		} else if (this.stage == 1 && this.isKeyOnePressed && !this.isKeyTwoPressed) {
-			this.stage = 1;
-		} else if (this.stage == 1 && this.isKeyOnePressed && this.isKeyTwoPressed) {
-			this.stage = 2;
-			getImpulse = true;
-		} else if (this.stage == 2 && this.isKeyOnePressed && this.isKeyTwoPressed) {
-			this.stage = 2;
-		} else if (this.stage == 2 && !this.isKeyOnePressed && this.isKeyTwoPressed) {
-			this.stage = 3;
-		} else if (this.stage == 3 && !this.isKeyOnePressed && this.isKeyTwoPressed) {
-			this.stage = 3;
-		} else if (this.stage == 3 && this.isKeyOnePressed && this.isKeyTwoPressed) {
-			this.stage = 0;
-			getImpulse = true;				
-		} else {
-			this.stage = -1;
-			this.impulse = 0;
-			this.isActive = false;
-		}
-		
-		if (getImpulse) {
-			this.impulse = this.resetImpulse;
-			this.isActive = true;
-		} else {
-			if ( this.impulse > 0.1 ){			
-				this.impulse -= this.impulse / 10;
-				this.isActive = true;
-			} else {
-				this.isActive = false;
-				this.impulse = 0;
-			}
-		}
-		
-		this.lastKeyCombo = this.currentKeyCombo;
-		this.wasActive = this.isActive;
+
+	this.update = function () {
+	    getImpulse = false;
+	    if ((this.stage == 0 || this.stage == -1) && this.isKeyOnePressed && this.isKeyTwoPressed) {
+	        this.stage = 0;
+	    } else if (this.stage == 0 && this.isKeyOnePressed && !this.isKeyTwoPressed) {
+	        this.stage = 1;
+	    } else if (this.stage == 1 && this.isKeyOnePressed && !this.isKeyTwoPressed) {
+	        this.stage = 1;
+	    } else if (this.stage == 1 && this.isKeyOnePressed && this.isKeyTwoPressed) {
+	        this.stage = 2;
+	        getImpulse = true;
+	    } else if (this.stage == 2 && this.isKeyOnePressed && this.isKeyTwoPressed) {
+	        this.stage = 2;
+	    } else if (this.stage == 2 && !this.isKeyOnePressed && this.isKeyTwoPressed) {
+	        this.stage = 3;
+	    } else if (this.stage == 3 && !this.isKeyOnePressed && this.isKeyTwoPressed) {
+	        this.stage = 3;
+	    } else if (this.stage == 3 && this.isKeyOnePressed && this.isKeyTwoPressed) {
+	        this.stage = 0;
+	        getImpulse = true;
+	    } else {
+	        this.stage = -1;
+	        this.impulse = 0;
+	        this.isActive = false;
+	    }
+
+	    if (getImpulse) {
+	        this.impulse = this.resetImpulse;
+	        this.isActive = true;
+	    } else {
+	        if (this.impulse > 0.1) {
+	            this.impulse -= 0.5 + Math.pow((this.impulse), 2) * 0.0005;
+	            this.isActive = true;
+	        } else {
+	            this.isActive = false;
+	            this.impulse = 0;
+	        }
+	    }
+
+	    this.lastKeyCombo = this.currentKeyCombo;
+	    this.wasActive = this.isActive;
+	    g_speed = this.impulse;
 	}
 }

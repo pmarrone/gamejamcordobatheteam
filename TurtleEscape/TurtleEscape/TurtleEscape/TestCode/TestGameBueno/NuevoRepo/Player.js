@@ -10,7 +10,7 @@ function Player() {
     this.climbStage = 0;
     this.climbFnishStage = 17;
     this.lastKeyCode = 0;
-	
+    	
     this.correctHitFrames = 0;
     this.wasLastKeyGood = false;
     this.keyHandler = new KeySwitchHandler(65, 68);
@@ -53,8 +53,8 @@ function Player() {
     /** the players running speed
         @type Number
      */
-    //this.speed = 0.2;
-    this.speed = 2.3;
+    //this.speed = 2.2;
+    this.speed = 0.3;
 	/** 
      */
     this.latency = 1;
@@ -104,13 +104,15 @@ function Player() {
 
     this.startClimbing = function () {
         this.isClimbing = true;
-        doState = climb;
+
         this.keyHandler.SetKeys(87, 83);
+        this.keyHandler.impulse *= 0.5;
+
+        doState = climb;
         this.updateAnimation();
         this.y += climbYOffset;
         this.zOrder += climbZOffset;
         g_GameObjectManager.SortObjects();
-        debug(this.zOrder);
         alreadyReset = false;
     }	
 	
@@ -153,9 +155,12 @@ function Player() {
 
         doState(this.self);
 
-        g_GameObjectManager.xScroll += (this.x - g_GameObjectManager.xScroll - this.screenBorder) * 0.5;
+        g_followingTurtle = (g_mainMagma.x < (this.x) - this.screenBorder);
+        if (g_followingTurtle) {
+            g_GameObjectManager.xScroll = (this.x) - this.screenBorder;
+        }
 
-        g_score = parseInt(g_GameObjectManager.xScroll);
+        g_score = parseInt(g_player.x);
         g_ApplicationManager.updateScore();
     }
 	
@@ -192,7 +197,7 @@ function Player() {
 		self.keyHandler.update();
 		var updateRequired = false;
 		if (self.keyHandler.impulse > 0){
-		    self.climbStage += 0.14 * (self.keyHandler.impulse / self.keyHandler.resetImpulse);
+		    self.climbStage += 0.15 * (self.keyHandler.impulse / self.keyHandler.resetImpulse);
 
 		    if (self.climbStage > 9 && self.climbStage < 12) {
 		        var newFrame = parseInt(self.climbStage);
@@ -222,7 +227,6 @@ function Player() {
                 doState = run;		        
 		        self.updateAnimation();
 		    } 
-
 		} 
 	}	
 }
