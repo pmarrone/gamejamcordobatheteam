@@ -113,7 +113,8 @@ function GameObjectManager()
             {name: 'gem', src: 'Gem.png'},
             {name: 'wall', src: 'Wall.png'},
             {name: 'mainmenu', src: 'mainmenu.png'},
-            {name: 'portal', src: 'portal.png'}]);
+            {name: 'portal', src: 'portal.png'},
+			{name: 'numbers', src: 'numbers.png'}]);
 
         // use setInterval to call the draw function
         setInterval(function(){g_GameObjectManager.draw();}, SECONDS_BETWEEN_FRAMES);

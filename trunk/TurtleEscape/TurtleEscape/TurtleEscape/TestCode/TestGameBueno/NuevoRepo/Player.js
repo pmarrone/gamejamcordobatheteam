@@ -75,11 +75,6 @@ function Player() {
         this.level = level;
         return this;
     }
-
-    /**
-        Called when a key is pressed
-        @param event Event Object
-    */
     
     this.keyDown = function (event) {
 		
@@ -87,6 +82,7 @@ function Player() {
 		this.lastKeyDownCode = event.keyDown;
 		
         if (event.keyCode == 32 && this.grounded) {
+			this.keyHandler.SetKeys(38, 40);
             this.grounded = false;
             this.jumpSinWavePos = 0;
         }

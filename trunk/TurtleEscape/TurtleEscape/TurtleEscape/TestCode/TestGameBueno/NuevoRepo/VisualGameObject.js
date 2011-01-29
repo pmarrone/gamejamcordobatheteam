@@ -18,9 +18,10 @@ function VisualGameObject()
 		@param xScroll The global scrolling value of the x axis  
 		@param yScroll The global scrolling value of the y axis  
     */
-    this.draw = function(/**Number*/ dt, /**CanvasRenderingContext2D*/ context, /**Number*/ xScroll, /**Number*/ yScroll)
-    {
-        context.drawImage(this.image, this.x - xScroll, this.y - yScroll);
+    this.draw = function (/**Number*/dt, /**CanvasRenderingContext2D*/context, /**Number*/xScroll, /**Number*/yScroll) {
+        if (this.isVisible) {
+            context.drawImage(this.image, this.x - xScroll, this.y - yScroll);
+        }
     }
     
     /**

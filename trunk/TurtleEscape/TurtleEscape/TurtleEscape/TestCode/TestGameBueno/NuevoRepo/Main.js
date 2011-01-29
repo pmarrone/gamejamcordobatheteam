@@ -30,6 +30,8 @@ var g_player = null;
     @type Image
 */
 
+var g_scoreObject = null;
+
 // The entry point of the application is set to the init function
 window.onload = init;
 

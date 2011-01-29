@@ -20,7 +20,10 @@ function GameObject()
         @type Number
     */
     this.y = 0;
-    
+
+
+    this.isVisible = true;
+
     /**
         Initialises the object, and adds it to the list of objects held by the GameObjectManager.
         @param x        The position on the X axis
