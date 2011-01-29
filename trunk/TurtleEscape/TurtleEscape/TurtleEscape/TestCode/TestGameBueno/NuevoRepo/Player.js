@@ -163,6 +163,9 @@ function Player() {
 			
 		}
 		
+		g_score = parseInt(this.x);
+		g_ApplicationManager.updateScore();
+		
 		if (updateRequired){
             this.updateAnimation();
         }
