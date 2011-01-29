@@ -50,7 +50,11 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="TestCode\gb_walk.png" />
     <Content Include="Index.htm" />
+    <Content Include="TestCode\animations.js" />
+    <Content Include="TestCode\constants.js" />
+    <Content Include="TestCode\action.js" />
     <Content Include="TestCode\CanvasForPato.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -62,6 +66,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Images\" />
+    <Folder Include="Scripts\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
