@@ -60,7 +60,7 @@ function Player() {
     /** The distance between the player and the edge of the screen
         @type Number
      */
-    this.screenBorder = 50;
+    this.screenBorder = 300;
 	this.isStopped = true;
     /**
         Initialises this object
@@ -211,17 +211,20 @@ function Player() {
             } while (collision)
         }
 
-        // keep the player bound to the level
-        if (this.x > this.level.blocks.length * this.level.blockWidth - this.frameWidth - 1)
-            this.x = this.level.blocks.length * this.level.blockWidth - this.frameWidth - 1;
-        if (this.x > context.canvas.width - this.frameWidth + xScroll - this.screenBorder)
-            g_GameObjectManager.xScroll = this.x - (context.canvas.width - this.frameWidth - this.screenBorder);
-        // modify the xScroll value to keep the player on the screen
-        if (this.x < 0)
-            this.x = 0;
-        if (this.x - this.screenBorder < xScroll)
-            g_GameObjectManager.xScroll = this.x - this.screenBorder;
-
+        // // keep the player bound to the level
+        // if (this.x > this.level.blocks.length * this.level.blockWidth - this.frameWidth - 1)
+            // this.x = this.level.blocks.length * this.level.blockWidth - this.frameWidth - 1;
+        // if (this.x > context.canvas.width - this.frameWidth + xScroll - this.screenBorder)
+            // g_GameObjectManager.xScroll = this.x - (context.canvas.width - this.frameWidth - this.screenBorder);
+        // // modify the xScroll value to keep the player on the screen
+        // if (this.x < 0)
+            // this.x = 0;
+        // if (this.x - this.screenBorder < xScroll)
+            // g_GameObjectManager.xScroll = this.x - this.screenBorder;
+	
+		g_GameObjectManager.xScroll += (this.x - g_GameObjectManager.xScroll - this.screenBorder) * 0.5;
+	
+			
         // if the player is jumping or falling, move along the sine wave
         if (!this.grounded) {
             // the last position on the sine wave
