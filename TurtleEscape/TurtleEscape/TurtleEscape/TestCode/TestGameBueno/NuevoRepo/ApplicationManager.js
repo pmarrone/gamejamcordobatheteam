@@ -34,6 +34,7 @@ function ApplicationManager()
         this.background2 = new RepeatingGameObject().startupRepeatingGameObject(g_ResourceManager.background1, 0, 100, 2, 600, 320, 0.5);
         this.background = new RepeatingGameObject().startupRepeatingGameObject(g_ResourceManager.background0, 0, 0, 1, 600, 320, 0.25);
         g_player = new Player().startupPlayer(this.level);
+        g_scoreObject = new ScoreObject().startUpScore();
         this.updateScore();
     }
 
@@ -48,6 +49,7 @@ function ApplicationManager()
 
     this.updateScore = function()
     {
+		//Draw score here.
         var score = document.getElementById("Score");
         score.innerHTML = String(g_score);
     }
