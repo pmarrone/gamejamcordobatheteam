@@ -216,17 +216,15 @@ function GameObjectManager()
         this.addedGameObjects.push(gameObject);
     };
 
-    this.addNewGameObjects = function()
-    {
-        if (this.addedGameObjects.length != 0)
-        {
-            for (var x = 0; x < this.addedGameObjects.length; ++x)
-            {
+    this.addNewGameObjects = function () {
+        if (this.addedGameObjects.length != 0) {
+            for (var x = 0; x < this.addedGameObjects.length; ++x) {
                 this.gameObjects.push(this.addedGameObjects[x]);
             }
 
             this.addedGameObjects.clear();
-            this.gameObjects.sort(function(a,b){return a.zOrder - b.zOrder;});
+            //this.gameObjects.sort(function(a,b){return a.zOrder - b.zOrder;});
+            this.SortObjects();
         }
     }
 
@@ -272,4 +270,8 @@ function GameObjectManager()
             }
         }
     }
+	
+	this.SortObjects = function() {
+		this.gameObjects.sort(function(a,b){return a.zOrder - b.zOrder;});
+	}
 }
