@@ -1,0 +1,27 @@
+<script>
+	function Draw() {
+
+	var canvas = document.getElementById('myCanvas');
+ 
+    	if (canvas.getContext){
+ 	 	var ctx = canvas.getContext('2d');
+ 
+ 		ctx.fillStyle    = '#00F';
+    		ctx.font         = 'Italic 30px Sans-Serif';
+		ctx.textBaseline = 'Top';
+    		ctx.fillText  ('Hello world!', 40, 100);
+
+		ctx.font         = 'Bold 30px Sans-Serif';
+		ctx.strokeText('Hello world!', 40, 50);
+		}
+	}
+</script>
+
+<body>
+<canvas id="myCanvas">
+
+</canvas>
+</body>
+<script>
+	Draw();
+</script>
