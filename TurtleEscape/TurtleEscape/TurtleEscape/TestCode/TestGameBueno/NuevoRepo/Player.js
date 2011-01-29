@@ -4,7 +4,12 @@
     @class
 */
 function Player() {
-	this.lastKeyCode = 0;
+    var climbYOffset = -20;
+    var climbZOffset = 4;
+    var alreadyReset = false;
+    this.climbStage = 0;
+    this.climbFnishStage = 17;
+    this.lastKeyCode = 0;
 	
     this.correctHitFrames = 0;
     this.wasLastKeyGood = false;
@@ -49,7 +54,7 @@ function Player() {
         @type Number
      */
     //this.speed = 0.2;
-    this.speed = 10;
+    this.speed = 2.3;
 	/** 
      */
     this.latency = 1;
@@ -96,13 +101,18 @@ function Player() {
         Called when a key is pressed
         @param event Event Object
     */
-	
-	this.startClimbing = function() {
-		this.isClimbing = true;
-		doState = climb;
-		this.keyHandler.SetKeys(87, 83);
-		this.updateAnimation();
-	}	
+
+    this.startClimbing = function () {
+        this.isClimbing = true;
+        doState = climb;
+        this.keyHandler.SetKeys(87, 83);
+        this.updateAnimation();
+        this.y += climbYOffset;
+        this.zOrder += climbZOffset;
+        g_GameObjectManager.SortObjects();
+        debug(this.zOrder);
+        alreadyReset = false;
+    }	
 	
 	this.stopClimbing = function() {
 		this.isClimbing = false;
@@ -121,15 +131,15 @@ function Player() {
     this.updateAnimation = function()
     {
 		if (this.isClimbing) {
-			this.setAnimation(g_ResourceManager.idleRight, 6,-1);
+			this.setAnimation(g_ResourceManager.climb, 17,-1);
 		} else if (this.right && this.left)
-            this.setAnimation(g_ResourceManager.idleRight, 6, 15);
+            this.setAnimation(g_ResourceManager.idleRight, 6, 6);
         else if (this.right)
             this.setAnimation(g_ResourceManager.runRight, 8, 15);
         else if (this.left)
             this.setAnimation(g_ResourceManager.runRight, 8, 15);
         else 
-            this.setAnimation(g_ResourceManager.idleRight, 6, 15);
+            this.setAnimation(g_ResourceManager.idleRight, 6, 6);
     }
 
     /**
@@ -142,8 +152,11 @@ function Player() {
     this.update = function (/**Number*/dt, /**CanvasRenderingContext2D*/context, /**Number*/xScroll, /**Number*/yScroll) {
 
         doState(this.self);
-	
-		g_GameObjectManager.xScroll += (this.x - g_GameObjectManager.xScroll - this.screenBorder) * 0.5;
+
+        g_GameObjectManager.xScroll += (this.x - g_GameObjectManager.xScroll - this.screenBorder) * 0.5;
+
+        g_score = parseInt(self.x);
+        g_ApplicationManager.updateScore();
     }
 	
 	function run(self) {
@@ -165,37 +178,53 @@ function Player() {
 			}
 			
 		}
-		
-		g_score = parseInt(self.x);
-		g_ApplicationManager.updateScore();
+	
 		
 		if (updateRequired){
 			self.updateAnimation();
 		}
 	}
-	
+
+	var oldFrame = 0;
+
 	function climb(self) {
+	    
 		self.keyHandler.update();
 		var updateRequired = false;
 		if (self.keyHandler.impulse > 0){
-		    self.x -= self.speed * 1.1 * (self.keyHandler.impulse / self.keyHandler.resetImpulse);
-		    this.moveFrames(1);
-		} else {
-			self.right = false;
-			if (!self.isStopped)
-			{
-				updateRequired = true;
-				self.isStopped = true;
-			}
-			
-		}
-		
-		g_score = parseInt(self.x);
-		g_ApplicationManager.updateScore();
-		
-		if (updateRequired){
-			self.updateAnimation();
-		}
+		    self.climbStage += 0.14 * (self.keyHandler.impulse / self.keyHandler.resetImpulse);
+
+		    if (self.climbStage > 9 && self.climbStage < 12) {
+		        var newFrame = parseInt(self.climbStage);
+		        if (oldFrame != newFrame) {
+		            self.x += 12;
+		            oldFrame = newFrame;
+		        }
+            }
+
+            if (self.climbStage > 11 && self.climbStage < 12 && !alreadyReset) {
+                alreadyReset = true;
+                self.zOrder -= climbZOffset;
+                g_GameObjectManager.SortObjects();
+                debug(self.zOrder);
+            }
+
+            self.setFrame(parseInt(self.climbStage));
+		    if (self.climbStage > self.climbFnishStage) {
+		        //Stop climbing
+		        self.climbStage = 0;
+		        self.isClimbing = false;
+		        self.keyHandler.SetKeys(65, 68);
+
+		        self.left = false;
+		        self.right = false;
+
+		        self.y -= climbYOffset;
+                doState = run;		        
+		        self.updateAnimation();
+		    } 
+
+		} 
 	}	
 }
 

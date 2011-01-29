@@ -100,18 +100,22 @@ function GameObjectManager()
 
         // create a new ResourceManager
         new ResourceManager().startupResourceManager(
-            [{name: 'runRight', src: 'run_right.png'},
-            {name: 'idleRight', src: 'parado.png'},
-            {name: 'background0', src: 'jsplatformer4_b0.png'},
-            {name: 'background1', src: 'jsplatformer4_b1.png'},
-            {name: 'background2', src: 'jsplatformer4_b2.png'},
-            {name: 'block', src: 'BlockA0.png'},
-            {name: 'lava', src: 'magma.png'},
-            {name: 'gem', src: 'Gem.png'},
-            {name: 'wall', src: 'Wall.png'},
-            {name: 'mainmenu', src: 'mainmenu.png'},
-            {name: 'portal', src: 'portal.png'},
-			{name: 'numbers', src: 'numbers.png'}]);
+            [{ name: 'runRight', src: 'run_right.png' },
+            { name: 'climb', src: 'trepada.png' },
+            { name: 'idleRight', src: 'parado.png' },
+            { name: 'background0', src: 'jsplatformer4_b0.png' },
+            { name: 'background1', src: 'jsplatformer4_b1.png' },
+            { name: 'background2', src: 'jsplatformer4_b2.png' },
+            { name: 'background3', src: 'intento-01.png' },
+            { name: 'mountains', src: 'mountains.png' },
+            { name: 'block', src: 'BlockA0.png' },
+            { name: 'lava', src: 'magmas.png' },
+            { name: 'gem', src: 'Gem.png' },
+            { name: 'wall', src: 'pared.png' },
+            { name: 'mainmenu', src: 'mainmenu.png' },
+            { name: 'portal', src: 'portal.png' },
+			{ name: 'numbers', src: 'numbers.png'}]);
+          
 
         // use setInterval to call the draw function
         setInterval(function(){g_GameObjectManager.draw();}, SECONDS_BETWEEN_FRAMES);

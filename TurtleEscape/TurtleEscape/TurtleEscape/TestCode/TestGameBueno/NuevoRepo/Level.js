@@ -15,7 +15,7 @@ function Level()
         Initialises this object
     */
     this.startupLevel = function (canvasWidth, canvasHeight) {
-        new Wall().startupWall(g_ResourceManager.wall, this.initialX, g_floor - g_ResourceManager.wall.height, 10);
+        new Wall().startupWall(g_ResourceManager.wall, this.initialX, g_floor - g_ResourceManager.wall.height, 5);
         return this;
     }
 }

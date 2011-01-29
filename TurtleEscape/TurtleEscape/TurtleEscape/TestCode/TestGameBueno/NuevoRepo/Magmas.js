@@ -9,10 +9,10 @@ function Magma() {
     var magma4Y = 40;
     var magma5Y = 85;
 
-    this.startUpMagma = function (offsetX, offsetY) {
+    this.startUpMagma = function (offsetX, offsetY, z) {
         offSetX = offsetX;
         offSetY = offsetY;
-        this.startupVisualGameObject(g_ResourceManager.lava, 0, 0, 2);
+        this.startupVisualGameObject(g_ResourceManager.lava, 0, 0, z);
         this.isVisible = false;
         return this;
     }
