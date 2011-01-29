@@ -35,6 +35,11 @@ function ApplicationManager()
         this.background = new RepeatingGameObject().startupRepeatingGameObject(g_ResourceManager.background0, 0, 0, 1, 600, 320, 0.25);
         g_player = new Player().startupPlayer(this.level);
         g_scoreObject = new ScoreObject().startUpScore();
+
+        //Creates magma
+        new Magma().startUpMagma();
+        //************
+
         this.updateScore();
     }
 
