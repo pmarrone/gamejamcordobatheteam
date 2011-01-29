@@ -15,27 +15,28 @@ function Level()
     */
     this.startupLevel = function(canvasWidth, canvasHeight)
     {
-        this.blocks[0] = 3;
+        this.blocks[0] = 2;
         this.blocks[1] = 2;
-        this.blocks[2] = 1;
-        this.blocks[3] = 1;
-        this.blocks[4] = 1;
-        this.blocks[5] = 1;
+        this.blocks[2] = 2;
+        this.blocks[3] = 2;
+        this.blocks[4] = 2;
+        this.blocks[5] = 2;
         this.blocks[6] = 2;
-        this.blocks[7] = 3;
+        this.blocks[7] = 2;
         this.blocks[8] = 2;
-        this.blocks[9] = 1;
+        this.blocks[9] = 2;
         this.blocks[10] = 2;
-        this.blocks[11] = 3;
-        this.blocks[12] = 4;
-        this.blocks[13] = 5;
-        this.blocks[14] = 4;
-        this.blocks[15] = 3;
+        this.blocks[11] = 2;
+        this.blocks[12] = 2;
+        this.blocks[13] = 2;
+        this.blocks[14] = 2;
+        this.blocks[15] = 2;
 
         this.powerups['1'] = 'Gem';
         this.powerups['6'] = 'Gem';
+		this.powerups['8'] = 'Wall';
         this.powerups['10'] = 'Gem';
-        this.powerups['14'] = 'LevelEndPost';
+        //~ this.powerups['14'] = 'LevelEndPost';
 
         this.addBlocks(canvasWidth, canvasHeight);
         this.addPowerups(canvasWidth, canvasHeight);
@@ -71,6 +72,9 @@ function Level()
                     case 'Gem':
                         new Powerup().startupPowerup(10, g_ResourceManager.gem, xPosition - g_ResourceManager.gem.width / 2, yPosition - g_ResourceManager.gem.height, 4, 1, 1);
                         break;
+					case 'Wall':
+                        new Powerup().startupPowerup(10, g_ResourceManager.wall, xPosition - g_ResourceManager.gem.width / 2, yPosition - g_ResourceManager.gem.height, 4, 1, 1);
+                        break;                        
                     case 'LevelEndPost':
                         new LevelEndPost().startupLevelEndPost(g_ResourceManager.portal, xPosition - g_ResourceManager.portal.width / 2 / 4, yPosition - g_ResourceManager.portal.height, 4);
                         break;
