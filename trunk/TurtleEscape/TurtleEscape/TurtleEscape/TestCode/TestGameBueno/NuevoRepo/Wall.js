@@ -9,9 +9,11 @@ function Wall()
     /** Position of the wall
         @type Number
      */
+    this.active = true;
     this.wallPositionX = 0;
     this.wallPositionY = 0;
     this.wallWidth = 0;
+    this.collisionFrameWidth = 0;
 
     /**
         Initialises this object
@@ -42,20 +44,17 @@ function Wall()
         @param xScroll The global scrolling value of the x axis
         @param yScroll The global scrolling value of the y axis
     */
-	this.update = function (/**Number*/ dt, /**CanvasRenderingContext2D*/context, /**Number*/ xScroll, /**Number*/ yScroll)
-    {
+    this.update = function (/**Number*/dt, /**CanvasRenderingContext2D*/context, /**Number*/xScroll, /**Number*/yScroll) {
         var currentPlayerX = g_player.x
-		//this.x = g_player.x;
-		//this.y = g_player.y - 50;
-		
-        if (this.collisionArea().intersects(g_player.collisionArea()))
-        {
-			if ( g_player.y < this.wallPositionY && !g_player.isClimbing){
-            	g_player.x = this.wallPositionX - this.wallWidth * 2;
-				g_player.startClimbing();
-            } else {
-				g_player.x = this.wallPositionX + this.wallWidth * 2;				
-			}
+        //this.x = g_player.x;
+        //this.y = g_player.y - 50;
+
+        if (this.collisionArea().intersects(g_player.collisionArea()) && this.active) {
+            if (!g_player.isClimbing) {
+                //g_player.x = this.x - this.wallWidth;
+                g_player.startClimbing();
+                this.active = false;
+            }
         }
     }
 }

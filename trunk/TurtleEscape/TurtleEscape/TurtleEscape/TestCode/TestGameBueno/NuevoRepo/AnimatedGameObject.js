@@ -29,6 +29,7 @@ function AnimatedGameObject()
         @type Number
      */
     this.frameWidth = 0;
+    this.collisionFrameWidth = 0;
 
     /**
         Initialises this object
@@ -39,17 +40,17 @@ function AnimatedGameObject()
         @param frameCount The number of animation frames in the image
         @param fps The frames per second to animate this object at
     */
-    this.startupAnimatedGameObject = function(/**Image*/ image, /**Number*/ x, /**Number*/ y, /**Number*/ z, /**Number*/ frameCount, /**Number*/ fps)
-    {
+    this.startupAnimatedGameObject = function (/**Image*/image, /**Number*/x, /**Number*/y, /**Number*/z, /**Number*/frameCount, /**Number*/fps) {
         if (frameCount <= 0) throw "framecount can not be <= 0";
         if (fps = 0) throw "fps can not be = 0"
 
         this.startupVisualGameObject(image, x, y, z);
         this.currentFrame = 0;
         this.frameCount = frameCount;
-        this.timeBetweenFrames = 1/fps;
+        this.timeBetweenFrames = 1 / fps;
         this.timeSinceLastFrame = this.timeBetweenFrames;
         this.frameWidth = this.image.width / this.frameCount;
+        this.collisionFrameWidth = this.frameWidth;
 
         return this;
     }
@@ -66,10 +67,17 @@ function AnimatedGameObject()
         this.frameWidth = this.image.width / this.frameCount;
     }
 	
-	this.moveFrames = function(frameNumber)
+    //Moves animation in a number of frames
+	this.moveFrames = function(numberOfFrames)
     {
-	   this.currentFrame += frameNumber;
+	   this.currentFrame += numberOfFrames;
 	   this.currentFrame %= this.frameCount;
+    }
+
+    //Moves animation to the specified frame
+    this.setFrame = function(frameNumber) {
+        this.currentFrame = frameNumber;
+        this.currentFrame %= this.frameCount;
     }
 
     /**
@@ -103,9 +111,8 @@ function AnimatedGameObject()
         this.shutdownAnimatedGameObject();
     }
 
-    this.collisionArea = function()
-    {
-        return new Rectangle().startupRectangle(this.x, this.y, this.frameWidth, this.image.height);
+    this.collisionArea = function() {
+        return new Rectangle().startupRectangle(this.x, this.y, this.collisionFrameWidth, this.image.height);
     }
 }
 
