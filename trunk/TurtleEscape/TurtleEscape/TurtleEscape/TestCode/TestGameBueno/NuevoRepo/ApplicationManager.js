@@ -26,8 +26,7 @@ function ApplicationManager()
         return this;
     }
 
-    this.startLevel = function()
-    {
+    this.startLevel = function () {
         g_GameObjectManager.shutdownAll();
         this.level = new Level().startupLevel(this.canvasWidth, this.canvasHeight);
 
@@ -38,8 +37,11 @@ function ApplicationManager()
         this.background = new RepeatingGameObject().startupRepeatingGameObject(g_ResourceManager.background0, 0, 0, 1, 600, 320, 0.05);
         g_player = new Player().startupPlayer(this.level);
         g_scoreObject = new ScoreObject().startUpScore();
+        new SpeedMeter().startUpSpeedMeter();
 
         //Creates magma
+        g_mainMagma = new Magma().startUpMagma(-10, 30, 10);
+        new Magma().startUpMagma(20, 20, 4.4, 0.5);
         new Magma().startUpMagma(-10, 60, 10, 1);
         new Magma().startUpMagma(20, 10, 4.4, 1.3);
         new Magma().startUpMagma(80, 70, 11, 0.9);

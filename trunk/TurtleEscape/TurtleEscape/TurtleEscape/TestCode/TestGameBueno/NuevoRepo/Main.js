@@ -32,8 +32,13 @@ var g_player = null;
 
 var g_scoreObject = null;
 
+var g_mainMagma = null;
+
 var g_floor = 290;
 
+var g_speed = 0;
+
+var g_followingTurle = false;
 
 // The entry point of the application is set to the init function
 window.onload = init;
