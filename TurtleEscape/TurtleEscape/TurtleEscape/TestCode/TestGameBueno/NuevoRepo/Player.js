@@ -155,7 +155,7 @@ function Player() {
 
         g_GameObjectManager.xScroll += (this.x - g_GameObjectManager.xScroll - this.screenBorder) * 0.5;
 
-        g_score = parseInt(self.x);
+        g_score = parseInt(g_GameObjectManager.xScroll);
         g_ApplicationManager.updateScore();
     }
 	
@@ -206,7 +206,6 @@ function Player() {
                 alreadyReset = true;
                 self.zOrder -= climbZOffset;
                 g_GameObjectManager.SortObjects();
-                debug(self.zOrder);
             }
 
             self.setFrame(parseInt(self.climbStage));
