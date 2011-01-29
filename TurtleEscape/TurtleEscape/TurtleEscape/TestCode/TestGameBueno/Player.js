@@ -4,10 +4,11 @@
     @class
 */
 function Player() {
-
+	this.lastKeyCode = 0;
     this.correctHitFrames = 0;
     this.wasLastKeyGood = false;
-    this.lastKeyCode = 0;
+    this.keyHandler = new KeySwitchHandler(37, 39);
+
     /** The maximum height of the jump
         @type Number
      */
@@ -40,7 +41,10 @@ function Player() {
     /** the players running speed
         @type Number
      */
-    this.speed = 75;
+    this.speed = 10;
+    /** 
+     */
+    this.latency = 5;
     /** True if the player is moving left, false otherwise
         @type Boolean
      */
@@ -56,14 +60,14 @@ function Player() {
     /** The distance between the player and the edge of the screen
         @type Number
      */
-    this.screenBorder = 100;
+    this.screenBorder = 50;
 
     /**
         Initialises this object
     */
     this.startupPlayer = function(level)
     {
-        this.startupAnimatedGameObject(g_ResourceManager.idleLeft, 300, 400 - 48 - 48, 4, 6, 20);
+        this.startupAnimatedGameObject(g_ResourceManager.idleRight, 300, 400 - 48 - 48, 4, 6, 20);
         this.level = level;
         return this;
     }
@@ -74,6 +78,10 @@ function Player() {
     */
     
     this.keyDown = function (event) {
+		
+		this.keyHandler.onKeyDown(event);
+		this.lastKeyDownCode = event.keyDown;
+		
         var updateRequired = false;
 
         //        // left
@@ -91,37 +99,36 @@ function Player() {
         if (event.keyCode == 37) {
             if (this.lastKeyCode == 39) {
                 this.wasLastKeyGood = true;
-                this.correctHitFrames = 10;
+                this.correctHitFrames = this.latency;
             } else {
                 this.wasLastKeyGood = false;
             }
 
-            this.left = true;
+            this.right = true;
             updateRequired = true;
         }
+        
         // right
         if (event.keyCode == 39) {
             if (this.lastKeyCode == 37) {
                 this.wasLastKeyGood = true;
-                this.correctHitFrames = 10;
+                this.correctHitFrames = this.latency;
             } else {
                 this.wasLastKeyGood = false;
             }
-            this.left = true;
+            this.right = true;
             updateRequired = true;
         }
-
-
+        
 
         if (event.keyCode == 32 && this.grounded) {
             this.grounded = false;
             this.jumpSinWavePos = 0;
         }
 
-        this.lastKeyCode = event.keyCode;
-
-        if (updateRequired)
+        if (updateRequired){
             this.updateAnimation();
+        }
 
     }
 
@@ -131,18 +138,22 @@ function Player() {
     */
 
     this.keyUp = function (event) {
-                // left
-                if (event.keyCode == 37)
-                {
-                    this.left = false;
-                    this.setAnimation(g_ResourceManager.idleLeft, 6, 20);
-                }
-                // right
-                if (event.keyCode == 39)
-                {
-                    this.right = false;
-                    this.setAnimation(g_ResourceManager.idleRight, 6, 20);
-                }
+                //~ // left
+                //~ if (event.keyCode == 37)
+                //~ {
+                    //~ this.left = false;
+                    //~ this.setAnimation(g_ResourceManager.idleRight, 6, 20);
+                //~ }
+                //~ // right
+                //~ if (event.keyCode == 39)
+                //~ {
+                    //~ this.right = false;
+                    //~ this.setAnimation(g_ResourceManager.idleRight, 6, 20);
+                //~ }
+                
+                
+		this.keyHandler.onKeyUp(event);
+        this.lastKeyCode = event.keyCode;
         this.updateAnimation();
     }
 
@@ -155,11 +166,11 @@ function Player() {
     this.updateAnimation = function()
     {
        if (this.right && this.left)
-            this.setAnimation(g_ResourceManager.idleLeft, 6, 20);
+            this.setAnimation(g_ResourceManager.idleRight, 6, 20);
         else if (this.right)
             this.setAnimation(g_ResourceManager.runRight, 12, 20);
         else if (this.left)
-            this.setAnimation(g_ResourceManager.runLeft, 12, 20);
+            this.setAnimation(g_ResourceManager.runRight, 12, 20);
     }
 
     /**
@@ -179,7 +190,9 @@ function Player() {
         if (this.wasLastKeyGood && this.correctHitFrames > 0) {
             this.correctHitFrames--;
             this.x += this.speed * dt * (1 + this.correctHitFrames);
-        }
+        } else {
+			this.left = false;
+		}
 
 
         // XOR operation (JavaScript does not have a native XOR operator)
@@ -275,6 +288,50 @@ function Player() {
             this.jumpSinWavePos = this.halfPI;
         }
     }
+}
+
+function KeySwitchHandler(keyOne,keyTwo){
+	this.keyOne = keyOne;
+	this.keyTwo = keyTwo;
+	
+	this.lastKeyUpCode = 0;
+    this.lastKeyDownCode = 0;	    
+    
+	this.switchingKeysSpeed = false;
+	this.resetKeyTime = 10;
+	this.currentKeyTime;
+	
+	//User is switching keys on time
+	this.isActive = false;
+	 
+	this.onKeyUp = function (event){
+		this.lastKeyUpCode = event.keyCode;
+	}
+	
+	this.onKeyDown = function(event){
+		this.lastKeyDownCode = event.keyCode;
+		
+		switchOneTwo = (this.lastKeyDownCode == this.keyOne 
+			&& this.lastKeyUpCode == this.keyTwo)
+					
+		switchTwoOne = (this.lastKeyUpCode == this.keyOne 
+			&& this.lastKeyDownCode == this.keyTwo)
+
+		//Check if user is switching keys
+		if (switchOneTwo || switchTwoOne) {
+			this.currentKeyTime = this.resetKeyTime;
+			this.isActive = true;				
+		} else {
+			this.isActive = false;
+		}				
+	}
+	
+	this.update = function()
+	{
+
+	}
+	
+
 }
 
 Player.prototype = new AnimatedGameObject;
