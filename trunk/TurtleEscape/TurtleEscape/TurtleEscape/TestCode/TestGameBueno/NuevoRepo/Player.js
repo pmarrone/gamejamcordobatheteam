@@ -41,7 +41,7 @@ function Player() {
     /** the players running speed
         @type Number
      */
-    this.speed = 0.3;
+    this.speed = 0.1;
     /** 
      */
     this.latency = 1;
@@ -121,13 +121,13 @@ function Player() {
     this.updateAnimation = function()
     {
        if (this.right && this.left)
-            this.setAnimation(g_ResourceManager.idleRight, 6, 5);
+            this.setAnimation(g_ResourceManager.idleRight, 6, 15);
         else if (this.right)
-            this.setAnimation(g_ResourceManager.runRight, 12, 5);
+            this.setAnimation(g_ResourceManager.runRight, 8, 15);
         else if (this.left)
-            this.setAnimation(g_ResourceManager.runRight, 12, 5);
+            this.setAnimation(g_ResourceManager.runRight, 8, 15);
         else 
-            this.setAnimation(g_ResourceManager.idleRight, 6, 5);
+            this.setAnimation(g_ResourceManager.idleRight, 6, 15);
     }
 
     /**

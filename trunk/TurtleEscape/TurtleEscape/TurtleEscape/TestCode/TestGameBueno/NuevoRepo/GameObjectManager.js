@@ -104,7 +104,7 @@ function GameObjectManager()
             {name: 'runRight', src: 'run_right.png'},
             {name: 'turtleRight', src: 'turtleRight.png'},
             {name: 'idleLeft', src: 'idle_left.png'},
-            {name: 'idleRight', src: 'idle_right.png'},
+            {name: 'idleRight', src: 'parado.png'},
             {name: 'background0', src: 'jsplatformer4_b0.png'},
             {name: 'background1', src: 'jsplatformer4_b1.png'},
             {name: 'background2', src: 'jsplatformer4_b2.png'},
