@@ -108,7 +108,9 @@ function GameObjectManager()
             {name: 'background1', src: 'jsplatformer4_b1.png'},
             {name: 'background2', src: 'jsplatformer4_b2.png'},
             {name: 'block', src: 'BlockA0.png'},
+            {name: 'lava', src: 'BlockA0.png'},
             {name: 'gem', src: 'Gem.png'},
+            {name: 'wall', src: 'Wall.png'},
             {name: 'mainmenu', src: 'mainmenu.png'},
             {name: 'portal', src: 'portal.png'}]);
 
