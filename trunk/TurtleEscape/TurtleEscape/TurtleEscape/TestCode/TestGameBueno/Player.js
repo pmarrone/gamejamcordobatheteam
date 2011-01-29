@@ -3,8 +3,11 @@
     @author <a href="mailto:matthewcasperson@gmail.com">Matthew Casperson</a>
     @class
 */
-function Player()
-{
+function Player() {
+
+    this.correctHitFrames = 0;
+    this.wasLastKeyGood = false;
+    this.lastKeyCode = 0;
     /** The maximum height of the jump
         @type Number
      */
@@ -69,27 +72,53 @@ function Player()
         Called when a key is pressed
         @param event Event Object
     */
-    this.keyDown = function(event)
-    {
+    
+    this.keyDown = function (event) {
         var updateRequired = false;
 
+        //        // left
+        //        if (event.keyCode == 37 && !this.left) {
+        //            this.left = true;
+        //            updateRequired = true;
+        //        }
+        //        // right
+        //        if (event.keyCode == 39 && !this.right) {
+        //            this.right = true;
+        //            updateRequired = true;
+        //        }
+
         // left
-        if (event.keyCode == 37 && !this.left)
-        {
+        if (event.keyCode == 37) {
+            if (this.lastKeyCode == 39) {
+                this.wasLastKeyGood = true;
+                this.correctHitFrames = 10;
+            } else {
+                this.wasLastKeyGood = false;
+            }
+
             this.left = true;
             updateRequired = true;
         }
         // right
-        if (event.keyCode == 39 && !this.right)
-        {
-            this.right = true;
+        if (event.keyCode == 39) {
+            if (this.lastKeyCode == 37) {
+                this.wasLastKeyGood = true;
+                this.correctHitFrames = 10;
+            } else {
+                this.wasLastKeyGood = false;
+            }
+            this.left = true;
             updateRequired = true;
         }
-        if (event.keyCode == 32 && this.grounded)
-        {
+
+
+
+        if (event.keyCode == 32 && this.grounded) {
             this.grounded = false;
             this.jumpSinWavePos = 0;
         }
+
+        this.lastKeyCode = event.keyCode;
 
         if (updateRequired)
             this.updateAnimation();
@@ -100,21 +129,20 @@ function Player()
         Called when a key is pressed
         @param event Event Object
     */
-    this.keyUp = function(event)
-    {
-        // left
-        if (event.keyCode == 37)
-        {
-            this.left = false;
-            this.setAnimation(g_ResourceManager.idleLeft, 6, 20);
-        }
-        // right
-        if (event.keyCode == 39)
-        {
-            this.right = false;
-            this.setAnimation(g_ResourceManager.idleRight, 6, 20);
-        }
 
+    this.keyUp = function (event) {
+                // left
+                if (event.keyCode == 37)
+                {
+                    this.left = false;
+                    this.setAnimation(g_ResourceManager.idleLeft, 6, 20);
+                }
+                // right
+                if (event.keyCode == 39)
+                {
+                    this.right = false;
+                    this.setAnimation(g_ResourceManager.idleRight, 6, 20);
+                }
         this.updateAnimation();
     }
 
@@ -141,24 +169,28 @@ function Player()
         @param xScroll The global scrolling value of the x axis
         @param yScroll The global scrolling value of the y axis
     */
-	this.update = function (/**Number*/ dt, /**CanvasRenderingContext2D*/context, /**Number*/ xScroll, /**Number*/ yScroll)
-    {
-        if (this.left)
-            this.x -= this.speed * dt;
-        if (this.right)
-            this.x += this.speed * dt;
+    this.update = function (/**Number*/dt, /**CanvasRenderingContext2D*/context, /**Number*/xScroll, /**Number*/yScroll) {
+
+        //        if (this.left)
+        //            this.x -= this.speed * dt;
+        //        if (this.right)
+        //            this.x += this.speed * dt;
+
+        if (this.wasLastKeyGood && this.correctHitFrames > 0) {
+            this.correctHitFrames--;
+            this.x += this.speed * dt * (1 + this.correctHitFrames);
+        }
+
 
         // XOR operation (JavaScript does not have a native XOR operator)
         // only test for a collision if the player is moving left or right (and not trying to do both at
         // the same time)
-        if ((this.right || this.left) && !(this.left && this.right))
-        {
+        if ((this.right || this.left) && !(this.left && this.right)) {
             // this will be true until the player is no longer colliding
             var collision = false;
             // the player may have to be pushed back through several block stacks (especially if the
             // frame rate is very slow)
-            do
-            {
+            do {
                 // the current position of the player (test the left side if running left
                 // and the right side if running right)
                 var xPos = this.left ? this.x : this.x + this.frameWidth;
@@ -171,8 +203,7 @@ function Player()
                 // from the "sky" down).
                 var playerHeight = context.canvas.height - (this.y + this.image.height);
                 // if the player is not higher than the stack of blocks, it must be colliding
-                if (playerHeight  < groundHeight)
-                {
+                if (playerHeight < groundHeight) {
                     collision = true;
                     // we are moving right, so push the player left
                     if (this.right)
@@ -181,27 +212,25 @@ function Player()
                     else
                         this.x = this.level.blockWidth * (currentBlock + 1);
                 }
-                else
-                {
+                else {
                     collision = false;
                 }
-            }  while (collision)
+            } while (collision)
         }
 
         // keep the player bound to the level
         if (this.x > this.level.blocks.length * this.level.blockWidth - this.frameWidth - 1)
             this.x = this.level.blocks.length * this.level.blockWidth - this.frameWidth - 1;
-        if (this.x > context.canvas.width - this.frameWidth + xScroll -  this.screenBorder)
-            g_GameObjectManager.xScroll = this.x - (context.canvas.width - this.frameWidth -  this.screenBorder);
+        if (this.x > context.canvas.width - this.frameWidth + xScroll - this.screenBorder)
+            g_GameObjectManager.xScroll = this.x - (context.canvas.width - this.frameWidth - this.screenBorder);
         // modify the xScroll value to keep the player on the screen
         if (this.x < 0)
             this.x = 0;
-        if (this.x -  this.screenBorder < xScroll)
+        if (this.x - this.screenBorder < xScroll)
             g_GameObjectManager.xScroll = this.x - this.screenBorder;
 
         // if the player is jumping or falling, move along the sine wave
-        if (!this.grounded)
-        {
+        if (!this.grounded) {
             // the last position on the sine wave
             var lastHeight = this.jumpSinWavePos;
             // the new position on the sine wave
@@ -210,7 +239,7 @@ function Player()
             // we have fallen off the bottom of the sine wave, so continue falling
             // at a predetermined speed
             if (this.jumpSinWavePos >= Math.PI)
-                 this.y += this.jumpHeight / this.jumpHangTime * this.fallMultiplyer * dt;
+                this.y += this.jumpHeight / this.jumpHangTime * this.fallMultiplyer * dt;
             // otherwise move along the sine wave
             else
                 this.y -= (Math.sin(this.jumpSinWavePos) - Math.sin(lastHeight)) * this.jumpHeight;
@@ -234,15 +263,13 @@ function Player()
         var playerHeight = context.canvas.height - (this.y + this.image.height);
 
         // we have hit the ground
-        if (maxGroundHeight >= playerHeight)
-        {
+        if (maxGroundHeight >= playerHeight) {
             this.y = context.canvas.height - maxGroundHeight - this.image.height;
             this.grounded = true;
             this.jumpSinWavePos = 0;
         }
         // otherwise we are falling
-        else if (this.grounded)
-        {
+        else if (this.grounded) {
             this.grounded = false;
             // starting falling down the sine wave (i.e. from the top)
             this.jumpSinWavePos = this.halfPI;
