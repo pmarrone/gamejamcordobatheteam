@@ -50,7 +50,7 @@ function ApplicationManager()
     this.updateScore = function()
     {
 		//Draw score here.
-        var score = document.getElementById("Score");
-        score.innerHTML = String(g_score);
+        //var score = document.getElementById("Score");
+        //score.innerHTML = String(g_score);
     }
 }

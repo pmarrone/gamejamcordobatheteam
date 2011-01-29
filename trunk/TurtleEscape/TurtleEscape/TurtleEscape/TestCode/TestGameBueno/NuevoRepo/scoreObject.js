@@ -7,14 +7,59 @@ function ScoreObject() {
     }
 
     this.update = function (dt, context, xScroll, yScroll) {
+        
+    }
 
-        this.y = 0 + yScroll;
-        this.x = 0 + xScroll;
+    this.draw = function (dt, canvasContext, xScroll, yScroll) {
+        var xCoord = 95;
+        var xSource = 0;
+        var castedSting = g_score + "";
 
-        for (var i = 0; i < g_score.length; i++) {
+        canvasContext.drawImage(this.image,
+                176, 0, 79, 17,
+                10, 0, 79, 17);
 
+        for (var i = 0; i < castedSting.length; i++) {
+            var charToRender = castedSting.charAt(i);
+
+            switch (charToRender) {
+                case "0":
+                    xSource = 1;
+                    break;
+                case "1":
+                    xSource = 18;
+                    break;
+                case "2":
+                    xSource = 34;
+                    break;
+                case "3":
+                    xSource = 50;
+                    break;
+                case "4":
+                    xSource = 67;
+                    break;
+                case "5":
+                    xSource = 84;
+                    break;
+                case "6":
+                    xSource = 102;
+                    break;
+                case "7":
+                    xSource = 120;
+                    break;
+                case "8":
+                    xSource = 138;
+                    break;
+                case "9":
+                    xSource = 157;
+                    break;
+                default:
+            }
+
+            canvasContext.drawImage(this.image,
+                xSource, 0, 15, 17,
+                xCoord + (i * 15), 0, 15, 17);
         }
-        context.drawImage(this.image, this.x, this.y);
     }
 }
 
