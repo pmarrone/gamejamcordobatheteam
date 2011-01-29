@@ -22,7 +22,12 @@ function KeySwitchHandler(keyOne,keyTwo){
 	//User is switching keys on time
 	this.isActive = false;
 	this.wasActive = false;
-	 
+	
+	this.SetKeys = function (keyOne, keyTwo) {
+		this.keyOne = keyOne;
+		this.keyTwo = keyTwo;
+	}
+	
 	this.onKeyUp = function (event){
 		this.lastKeyUpCode = event.keyCode;
 		if (this.lastKeyUpCode == this.keyOne) {
@@ -48,7 +53,7 @@ function KeySwitchHandler(keyOne,keyTwo){
 		keyPressedIsDifferent = (this.lastKeyDownCode != this.currentKeyDownCode);
 		//Check if user is switching keys
 	}
-	
+		
 	this.onKeyDown = function(event){
 	
 		this.currentKeyDownCode = event.keyCode;
