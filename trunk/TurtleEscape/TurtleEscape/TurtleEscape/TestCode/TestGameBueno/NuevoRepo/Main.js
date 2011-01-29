@@ -32,6 +32,9 @@ var g_player = null;
 
 var g_scoreObject = null;
 
+var g_floor = 320;
+
+
 // The entry point of the application is set to the init function
 window.onload = init;
 

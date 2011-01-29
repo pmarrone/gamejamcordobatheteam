@@ -68,7 +68,6 @@ function AnimatedGameObject()
 	
 	this.moveFrames = function(frameNumber)
     {
-	   this.timeSinceLastFrame = this.timeBetweenFrames;
 	   this.currentFrame += frameNumber;
 	   this.currentFrame %= this.frameCount;
     }
@@ -86,7 +85,7 @@ function AnimatedGameObject()
         context.drawImage(this.image, sourceX, 0, this.frameWidth, this.image.height, this.x - xScroll, this.y - yScroll, this.frameWidth, this.image.height);
 
         this.timeSinceLastFrame -= dt;
-        if (this.timeSinceLastFrame <= 0)
+        if (this.timeSinceLastFrame <= 0 && this.timeBetweenFrames > 0)
         {
            this.timeSinceLastFrame = this.timeBetweenFrames;
            ++this.currentFrame;

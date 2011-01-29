@@ -39,9 +39,6 @@ function KeySwitchHandler(keyOne,keyTwo){
 			//debug("Key one up ");
 		}
 		
-		
-		
-		
 		if (this.lastKeyUpCode == this.keyTwo 
 			&& this.currentKeyDownCode == this.keyOne) {
 			this.currentKeyCombo = 1;
