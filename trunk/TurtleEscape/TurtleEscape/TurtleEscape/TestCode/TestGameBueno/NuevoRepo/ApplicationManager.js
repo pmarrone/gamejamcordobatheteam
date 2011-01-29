@@ -37,7 +37,7 @@ function ApplicationManager()
         g_scoreObject = new ScoreObject().startUpScore();
 
         //Creates magma
-        new Magma().startUpMagma();
+        new Magma().startUpMagma(0, 0);
         //************
 
         this.updateScore();
