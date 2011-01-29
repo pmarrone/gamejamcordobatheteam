@@ -15,22 +15,12 @@ function Level()
     */
     this.startupLevel = function(canvasWidth, canvasHeight)
     {
-        this.blocks[0] = 2;
-        this.blocks[1] = 2;
-        this.blocks[2] = 2;
-        this.blocks[3] = 2;
-        this.blocks[4] = 2;
-        this.blocks[5] = 2;
-        this.blocks[6] = 2;
-        this.blocks[7] = 2;
-        this.blocks[8] = 2;
-        this.blocks[9] = 2;
-        this.blocks[10] = 2;
-        this.blocks[11] = 2;
-        this.blocks[12] = 2;
-        this.blocks[13] = 2;
-        this.blocks[14] = 2;
-        this.blocks[15] = 2;
+		var i = 0;
+		var totalBlocks = 30;
+		for (i=0;i<=totalBlocks;i++)
+		{
+			this.blocks[i] = 2;
+		}
 
         this.powerups['1'] = 'Gem';
         this.powerups['6'] = 'Gem';
@@ -73,7 +63,7 @@ function Level()
                         new Powerup().startupPowerup(10, g_ResourceManager.gem, xPosition - g_ResourceManager.gem.width / 2, yPosition - g_ResourceManager.gem.height, 4, 1, 1);
                         break;
 					case 'Wall':
-                        new Powerup().startupPowerup(10, g_ResourceManager.wall, xPosition - g_ResourceManager.gem.width / 2, yPosition - g_ResourceManager.gem.height, 4, 1, 1);
+                        new Wall().startupWall(10, g_ResourceManager.wall, xPosition - g_ResourceManager.wall.width / 2, yPosition - g_ResourceManager.wall.height);
                         break;                        
                     case 'LevelEndPost':
                         new LevelEndPost().startupLevelEndPost(g_ResourceManager.portal, xPosition - g_ResourceManager.portal.width / 2 / 4, yPosition - g_ResourceManager.portal.height, 4);
