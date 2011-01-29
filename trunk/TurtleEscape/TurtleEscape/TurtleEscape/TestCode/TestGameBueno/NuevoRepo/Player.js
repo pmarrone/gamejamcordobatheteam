@@ -5,10 +5,14 @@
 */
 function Player() {
 	this.lastKeyCode = 0;
+	
     this.correctHitFrames = 0;
     this.wasLastKeyGood = false;
     this.keyHandler = new KeySwitchHandler(37, 39);
-
+	
+	var doState = run;
+	this.self = this;
+	
     /** The maximum height of the jump
         @type Number
      */
@@ -41,7 +45,7 @@ function Player() {
     /** the players running speed
         @type Number
      */
-    this.speed = 0.1;
+    this.speed = 0.2;
     /** 
      */
     this.latency = 1;
@@ -92,6 +96,11 @@ function Player() {
         Called when a key is pressed
         @param event Event Object
     */
+	
+	this.startClimbing = new function() {
+
+		this.doState = climb;
+	}	
 
     this.keyUp = function (event) {
                 //~ // left
@@ -143,32 +152,9 @@ function Player() {
         //            this.x -= this.speed * dt;
         //        if (this.right)
         //            this.x += this.speed * dt;
-        
-        this.keyHandler.update();
-        var updateRequired = false;
-        if (this.keyHandler.impulse > 0){			
-			this.x += this.speed * (this.keyHandler.impulse / this.keyHandler.resetImpulse);
-			this.right = true;
-			if (this.isStopped){				
-				this.isStopped = false;
-				updateRequired = true;
-			}
-		} else {
-			this.right = false;
-			if (!this.isStopped)
-			{
-				updateRequired = true;
-				this.isStopped = true;
-			}
-			
-		}
+        doState(this.self);
 		
-		g_score = parseInt(this.x);
-		g_ApplicationManager.updateScore();
-		
-		if (updateRequired){
-            this.updateAnimation();
-        }
+
 
         //~ if (this.wasLastKeyGood && this.correctHitFrames > 0) {
             //~ this.correctHitFrames--;
@@ -274,6 +260,38 @@ function Player() {
             this.jumpSinWavePos = this.halfPI;
         }
     }
+	
+	function run(self) {
+		self.keyHandler.update();
+		var updateRequired = false;
+		if (self.keyHandler.impulse > 0){			
+			self.x += self.speed * (self.keyHandler.impulse / self.keyHandler.resetImpulse);
+			self.right = true;
+			if (self.isStopped){				
+				self.isStopped = false;
+				updateRequired = true;
+			}
+		} else {
+			self.right = false;
+			if (!self.isStopped)
+			{
+				updateRequired = true;
+				self.isStopped = true;
+			}
+			
+		}
+		
+		g_score = parseInt(self.x);
+		g_ApplicationManager.updateScore();
+		
+		if (updateRequired){
+			self.updateAnimation();
+		}
+	}
+	
+	function climb(self) {
+		
+	}	
 }
 
 Player.prototype = new AnimatedGameObject;
