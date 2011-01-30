@@ -165,6 +165,7 @@ function GameObjectManager()
              { name: 'sizzle1', src: 'Sound/sizzle1.mp3' },
              { name: 'sizzle2', src: 'Sound/sizzle2.mp3' },
              { name: 'sizzle3', src: 'Sound/sizzle3.mp3' },
+             { name: 'mainTheme', src: 'Sound/mainTheme.mp3' },
              { name: 'alarm', src: 'Sound/alarm.wav' }            
             ]);
 
