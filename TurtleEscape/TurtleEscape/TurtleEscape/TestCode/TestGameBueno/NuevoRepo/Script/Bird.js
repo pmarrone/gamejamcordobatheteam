@@ -1,7 +1,7 @@
 function Bird() {
 
     var deathBirds = 0;
-    var bird
+    var nextBirds = 2;
 
     this.startupBird = function () {
         this.startupAnimatedGameObject(g_ResourceManager.bird, 0, g_floor - 80, 8,
@@ -13,7 +13,7 @@ function Bird() {
     }
 
     var counter = 0;
-    var birdSpeed = 2.6;
+    var birdSpeed = 4.6;
 
     this.update = function (/**Number*/dt, /**CanvasRenderingContext2D*/context, /**Number*/xScroll, /**Number*/yScroll) {
         counter += 0.1;
@@ -26,15 +26,15 @@ function Bird() {
             g_score += 20;
             deathBirds++;
 
-            if (deathBirds == 1)
+            if (deathBirds == nextBirds) {
                 new Achievement().startupAchievement(g_ResourceManager.woodenFingersL,
-                    g_ResourceManager.woodenFingersS, "Frula");
+                    g_ResourceManager.woodenFingersS, "      " + deathBirds + " birds burned.");
+                nextBirds *= 5;
+            }
 
-            this.x = g_GameObjectManager.xScroll + 650 + Math.random() * 150;
+            this.x = g_GameObjectManager.xScroll + 2750 + Math.random() * 500;
         }
-
     }
-
 }
 
 Bird.prototype = new AnimatedGameObject;
