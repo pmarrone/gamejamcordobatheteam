@@ -42,7 +42,7 @@ function AnimatedGameObject()
     */
     this.startupAnimatedGameObject = function (/**Image*/image, /**Number*/x, /**Number*/y, /**Number*/z, /**Number*/frameCount, /**Number*/fps) {
         if (frameCount <= 0) throw "framecount can not be <= 0";
-        if (fps = 0) throw "fps can not be == 0"
+        if (fps == 0) throw "fps can not be = 0"
 
         this.startupVisualGameObject(image, x, y, z);
         this.currentFrame = 0;

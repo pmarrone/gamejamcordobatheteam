@@ -18,6 +18,10 @@ function Level()
         wall = new Wall().startupWall(g_ResourceManager.wall, 200 + Math.random() * 40, g_floor - g_ResourceManager.wall.height, 5);
         wall.EventPointer = WallEvent
         wall.image = wall.getRandomImage();
+
+        new Rabbit().startupRabbit();
+        new Bird().startupBird();
+
         return this;
     }
 
