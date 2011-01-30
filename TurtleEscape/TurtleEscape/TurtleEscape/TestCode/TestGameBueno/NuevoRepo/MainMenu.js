@@ -26,7 +26,7 @@ function MainMenu() {
     this.MouseDown = function (event) {
         if (startRectangle.intersects(new Rectangle().startupRectangle(event.offsetX,
             event.offsetY, 2, 2)) && !isShowingCredits) {
-            g_SoundManager.start.play();
+            g_SoundManager.bubuzela.play();
             g_ApplicationManager.startLevel();
         }
 
@@ -38,6 +38,7 @@ function MainMenu() {
 
         if (backRectangle.intersects(new Rectangle().startupRectangle(event.offsetX,
             event.offsetY, 2, 2))) {
+            g_SoundManager.start.play();
             isShowingCredits = false;
         }
     }

@@ -130,6 +130,7 @@ function GameObjectManager()
 	    new SoundManager().startupSoundManager(
             [{ name: 'credits', src: 'credits.mp3' },
              { name: 'start', src: 'star.mp3' },
+             { name: 'bubuzela', src: 'cheer3.wav' },
 //             { name: 'steep1', src: 'steep1.mp3' },
 //             { name: 'steep2', src: 'steep2.mp3' },
              { name: 'mezcla', src: 'mezcla.mp3' }
