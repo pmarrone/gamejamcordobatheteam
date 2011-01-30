@@ -128,12 +128,12 @@ function GameObjectManager()
 			{ name: 'numbers', src: 'numbers.png'}]);
 
 	    new SoundManager().startupSoundManager(
-            [{ name: 'credits', src: 'credits.mp3' },
-             { name: 'start', src: 'star.mp3' },
-             { name: 'bubuzela', src: 'cheer3.wav' },
+            [{ name: 'credits', src: 'Sound/credits.mp3' },
+             { name: 'start', src: 'Sound/star.mp3' },
+             { name: 'bubuzela', src: 'Sound/cheer3.wav' },
 //             { name: 'steep1', src: 'steep1.mp3' },
 //             { name: 'steep2', src: 'steep2.mp3' },
-             { name: 'mezcla', src: 'mezcla.mp3' }
+             {name: 'mezcla', src: 'Sound/mezcla.mp3' }
             ]);
 
 
