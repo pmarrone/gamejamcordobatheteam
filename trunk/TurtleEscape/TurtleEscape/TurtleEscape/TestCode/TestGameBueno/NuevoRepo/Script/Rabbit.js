@@ -27,13 +27,14 @@ function Rabbit() {
 	this.rebornRabbit = function () {
 		this.startupAnimatedGameObject(g_ResourceManager.rabbit, 0, this.y + 13, 8, 12, 3);
 		this.x = g_GameObjectManager.xScroll + 600 + Math.random() * 100;
+		this.alreadyBurning = false;
 	}
 
 	this.update = function (/**Number*/dt, /**CanvasRenderingContext2D*/context, /**Number*/xScroll, /**Number*/yScroll) {
 
 	    // Update status
-	    this.isBurning = this.x < g_mainMagma.x + 90;
-	    this.needsToRelocate = this.x < g_mainMagma.x + 50;
+	    this.isBurning = this.x < g_mainMagma.x + 120;
+	    this.needsToRelocate = this.x < g_mainMagma.x;
 
 	    // Check if is burning
 	    if (this.isBurning && !this.alreadyBurning) {
