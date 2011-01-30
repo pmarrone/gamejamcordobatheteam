@@ -21,13 +21,13 @@ function SpeedMeter() {
             counter = 0;
         }
 
-        var xCoord = 300;
+        var xCoord = 503;
         var xSource = 0;
         var castedSting = parseInt(localSpeed * 100) + "";
 
-        //        canvasContext.drawImage(this.image,
-        //                176, 0, 79, 17,
-        //                10, 0, 79, 17);
+        canvasContext.drawImage(g_ResourceManager.speed,
+                176, 2, 79, 14,
+                420, 2, 79, 14);
 
         for (var i = 0; i < castedSting.length; i++) {
             var charToRender = castedSting.charAt(i);

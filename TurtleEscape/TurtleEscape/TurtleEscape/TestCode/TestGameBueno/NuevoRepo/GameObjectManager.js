@@ -124,13 +124,14 @@ function GameObjectManager()
             { name: 'gameOver', src: 'gameOver.png' },
             { name: 'menufont', src: 'menufont.png' },
             { name: 'backButton', src: 'backButton.png' },
+            { name: 'speed', src: 'speed.png' },
 			{ name: 'numbers', src: 'numbers.png'}]);
 
 	    new SoundManager().startupSoundManager(
             [{ name: 'credits', src: 'credits.mp3' },
              { name: 'start', src: 'star.mp3' },
-             /*{ name: 'steep1', src: 'steep1.mp3' },
-             { name: 'steep2', src: 'steep2.mp3' }*/
+             { name: 'steep1', src: 'steep1.mp3' },
+             { name: 'steep2', src: 'steep2.mp3' }
             ]);
 
 
