@@ -9,7 +9,7 @@ function Player() {
     
     var freezersClimbed = 0;
     var freezersLevel = 0;
-    var freezersObjective = 5;
+    var freezersObjective = 2;
     
     var climbYOffset = -20;
     var climbZOffset = 4;
