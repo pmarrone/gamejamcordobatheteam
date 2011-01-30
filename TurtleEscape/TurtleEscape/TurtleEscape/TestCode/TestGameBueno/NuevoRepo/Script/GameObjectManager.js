@@ -115,7 +115,7 @@ function GameObjectManager()
             { name: 'background3', src: 'Image/intento-01.png' },
             { name: 'mountains', src: 'Image/mountains.png' },
 //            { name: 'block', src: 'Image/BlockA0.png' },
-            { name: 'lava', src: 'Image/magmas.png' },
+            { name: 'lava', src: 'Image/Magmas.png' },
 //            { name: 'gem', src: 'Image/Gem.png' },
             { name: 'wall', src: 'Image/pared.png' },
             { name: 'freezer', src: 'Image/heladera.png' },
@@ -140,6 +140,9 @@ function GameObjectManager()
 
             { name: 'forrestL', src: 'Image/forrestL.png' },
             { name: 'forrestS', src: 'Image/forrestS.png' },
+
+            { name: 'freezerL', src: 'Image/freezerL.png' },
+            { name: 'freezerS', src: 'Image/freezerS.png' },
 
             //teclas
             { name: 'A', src: 'Image/A.png' },

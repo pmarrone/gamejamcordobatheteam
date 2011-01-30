@@ -2,6 +2,7 @@
 
     this.achievements = new Array();
     var smallAchievementSide = 20;
+    var startXPos = 22;
     var startXPos = 10;
     var startYPos = 30;
 
@@ -11,15 +12,15 @@
 
     this.add = function (achievement) {
         achievement.image = achievement.smallImage;
-        g_screenWidth = 200;
+        achivementBarWidth = 400;
 
         fullXPosition = (smallAchievementSide * this.achievements.length) + 15;
 
-        var xPos = startXPos + fullXPosition; // % g_screenWidth;
-        var yPos = startYPos + (fullXPosition / g_screenWidth) * smallAchievementSide;
+        var xPos = startXPos + fullXPosition % achivementBarWidth;
+        var yPos = startYPos + parseInt(fullXPosition / achivementBarWidth) * smallAchievementSide;
 
         achievement.x = xPos;
-        achievement.y = startYPos;
+        achievement.y = yPos;
 
         this.achievements.push(achievement);
     }

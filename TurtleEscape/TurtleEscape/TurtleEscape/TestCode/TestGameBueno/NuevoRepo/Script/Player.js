@@ -4,6 +4,13 @@
     @class
 */
 function Player() {
+    
+    var lastObstacle = null;
+    
+    var freezersClimbed = 0;
+    var freezersLevel = 0;
+    var freezersObjective = 5;
+    
     var climbYOffset = -20;
     var climbZOffset = 4;
     var alreadyReset = false;
@@ -54,7 +61,7 @@ function Player() {
         @type Number
      */
     //this.speed = 20.2;
-    this.speed = 0.3;
+    this.speed = 0.24;
 	/** 
      */
     this.latency = 1;
@@ -102,8 +109,9 @@ function Player() {
         @param event Event Object
     */
 
-    this.startClimbing = function () {
+    this.startClimbing = function (wall) {
         this.isClimbing = true;
+        lastObstacle = wall;
         g_KeyHelping.isClimbing(true);
 
         this.keyHandler.SetKeys(87, 83);
@@ -237,8 +245,17 @@ function Player() {
 		        self.right = false;
 
 		        self.y -= climbYOffset;
-                doState = run;		        
-		        self.updateAnimation();
+                doState = run;
+                self.updateAnimation();
+
+                if (lastObstacle.image == g_ResourceManager.freezer) {
+                    freezersClimbed++;
+                    if (freezersClimbed >= freezersObjective) {
+                        new Achievement().startupAchievement(g_ResourceManager.freezerL, g_ResourceManager.freezerS, "Climb over " + freezersObjective + " fridges");
+                        freezersObjective *= 3;
+                        freezersLevel++;
+                    } 
+                }
 		    } 
 		} 
 	}	

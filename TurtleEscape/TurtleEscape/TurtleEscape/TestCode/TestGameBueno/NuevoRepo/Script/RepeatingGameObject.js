@@ -6,7 +6,7 @@
 */
 function RepeatingGameObject() {
 
-    this.onCycle = null;
+    this.onLap = null;
     /** The width that the final image will take up
 		@type Number
 	*/
@@ -70,11 +70,20 @@ function RepeatingGameObject() {
         }
     }
 
-    
+    var iterations = 0;
+    var laps = 0;
     this.drawRepeat = function(canvas, newPosition, newFillArea, newScrollPosition)
     {
 
         // find where in our repeating texture to start drawing (the top left corner)
+        if (iterations != parseInt(Math.abs(newScrollPosition[0]) / this.image.width)) {
+            iterations = parseInt(Math.abs(newScrollPosition[0]) / this.image.width);
+            if (this.onLap != null) {
+                laps++;
+                this.onLap(laps);
+            }
+        }
+
         var xOffset = Math.abs(newScrollPosition[0]) % this.image.width;
         var yOffset = Math.abs(newScrollPosition[1]) % this.image.height;
         var left = newScrollPosition[0]<0?this.image.width-xOffset:xOffset;
