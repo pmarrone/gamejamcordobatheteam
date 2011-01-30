@@ -18,7 +18,7 @@ function Rabbit() {
 
 	this.burnRabbit = function() {
 		// Change animation
-		this.startupAnimatedGameObject(g_ResourceManager.rabbitBurn, this.x, this.y, 8, 12, 3);
+		this.startupAnimatedGameObject(g_ResourceManager.rabbitBurn, this.x, this.y - 13, 8, 4, 3);
 		// Set state to burning
 		this.alreadyBurning = true;
         return this;
@@ -29,21 +29,22 @@ function Rabbit() {
 		this.x = g_GameObjectManager.xScroll + 600 + Math.random() * 100;
 	}
 
-    this.update = function (/**Number*/dt, /**CanvasRenderingContext2D*/context, /**Number*/xScroll, /**Number*/yScroll) {
+	this.update = function (/**Number*/dt, /**CanvasRenderingContext2D*/context, /**Number*/xScroll, /**Number*/yScroll) {
 
-		// Update status
-		this.isBurning = this.x < g_mainMagma.x + 90;
-		this.needsToRelocate = this.x < g_mainMagma.x + 50;
+	    // Update status
+	    this.isBurning = this.x < g_mainMagma.x + 90;
+	    this.needsToRelocate = this.x < g_mainMagma.x + 50;
 
-		// Check if is burning
-		if ( this.isBurning && !this.alreadyBurning ){ 
-			this.burnRabbit();
-		}
-		// Check if needs to be relocated
-		if ( this.needsToRelocate && this.alreadyBurning ){
-         	this.rebornRabbit();   
-		}
-    }
+	    // Check if is burning
+	    if (this.isBurning && !this.alreadyBurning) {
+	        g_SoundManager.doSizzle();
+	        this.burnRabbit();
+	    }
+	    // Check if needs to be relocated
+	    if (this.needsToRelocate && this.alreadyBurning) {
+	        this.rebornRabbit();
+	    }
+	}
 
 }
 
