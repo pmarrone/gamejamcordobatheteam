@@ -138,6 +138,9 @@ function GameObjectManager()
             { name: 'hotchickenL', src: 'Image/hotchickenL.png' },
             { name: 'hotchickenS', src: 'Image/hotchickenS.png' },
 
+            { name: 'forrestL', src: 'Image/forrestL.png' },
+            { name: 'forrestS', src: 'Image/forrestS.png' },
+
             //teclas
             { name: 'A', src: 'Image/A.png' },
             { name: 'D', src: 'Image/D.png' },
