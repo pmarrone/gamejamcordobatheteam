@@ -32,7 +32,7 @@ function Magma() {
         this.x += 0.18;
 
         if (this.x + 150 > g_player.x) {
-            debug("Game over!");
+            //debug("Game over!");
         }
     }
 
