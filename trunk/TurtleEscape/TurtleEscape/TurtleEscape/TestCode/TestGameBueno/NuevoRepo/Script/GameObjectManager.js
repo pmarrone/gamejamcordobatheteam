@@ -135,6 +135,9 @@ function GameObjectManager()
             { name: 'goldFingerL', src: 'Image/goldFingerL.png' },
             { name: 'goldFingerS', src: 'Image/goldFingerS.png' },
 
+            { name: 'hotchickenL', src: 'Image/hotchickenL.png' },
+            { name: 'hotchickenS', src: 'Image/hotchickenS.png' },
+
             //teclas
             { name: 'A', src: 'Image/A.png' },
             { name: 'D', src: 'Image/D.png' },
