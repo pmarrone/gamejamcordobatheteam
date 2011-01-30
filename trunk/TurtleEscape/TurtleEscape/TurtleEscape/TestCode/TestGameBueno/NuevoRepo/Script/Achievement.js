@@ -6,12 +6,16 @@
     this.smallImage = null;
     var stored = false;
 
-    this.startupAchievement = function (bigImage, smallImage) {
+    var ArchievementString = "";
+
+    this.startupAchievement = function (bigImage, smallImage, achievementString) {
         this.bigImage = bigImage;
         this.smallImage = smallImage;
 
-        this.x = 100;
-        this.y = 200;
+        ArchievementString = achievementString;
+
+        this.x = 200;
+        this.y = 120;
         this.zOrder = 14;
         this.startupVisualGameObject(this.bigImage, this.x, this.y, this.zOrder);
         this.isVisible = true;
@@ -25,11 +29,21 @@
     var counter = 0;
 
     this.draw = function (dt, canvasContext, xScroll, yScroll) {
-        if (counter > 1000 && !stored) {
+        if (counter > 100 && !stored) {
             stored = true;
             g_AchievementManager.add(this);
         } else {
             counter++;
+        }
+
+        if (!stored) {
+            if (ArchievementString.length > 0) {
+                canvasContext.fillStyle = '#FF0000';
+                canvasContext.font = 'Bold 14px Sans-Serif';
+                canvasContext.textBaseline = 'Top';
+                canvasContext.strokeStyle = '#FFFFFF';
+                canvasContext.fillText(ArchievementString, this.x, this.y + 100);
+            }
         }
 
         canvasContext.drawImage(

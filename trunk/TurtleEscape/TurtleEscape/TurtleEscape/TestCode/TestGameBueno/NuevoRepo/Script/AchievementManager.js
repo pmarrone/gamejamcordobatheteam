@@ -2,8 +2,8 @@
 
     this.achievements = new Array();
     var smallAchievementWidth = 50;
-    var startXPos = 30;
-    var startYPos = 270;
+    var startXPos = 10;
+    var startYPos = 30;
 
 
     this.startupAchievementManager = function () {        
@@ -11,8 +11,9 @@
     }
 
     this.add = function (achievement) {
-        this.achievements.push(achievement);
         achievement.image = achievement.smallImage;
-        achievement.x = startXPos + achievements.length() * smallAchievementWidth;
+        achievement.x = startXPos + this.achievements.length * smallAchievementWidth;
+        achievement.y = startYPos;
+        this.achievements.push(achievement);
     }
 }
