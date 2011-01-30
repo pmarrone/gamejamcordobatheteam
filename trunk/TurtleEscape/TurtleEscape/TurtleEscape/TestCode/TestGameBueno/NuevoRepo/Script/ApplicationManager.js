@@ -32,8 +32,8 @@ function ApplicationManager()
 
         //this.background4 = new RepeatingGameObject().startupRepeatingGameObject(g_ResourceManager.background3, 0, 100, 10, 600, 320, 0.5);
         this.background3 = new RepeatingGameObject().startupRepeatingGameObject(g_ResourceManager.background2, 0, 100, 10, 600, 320, 1);
-        this.background4 = new RepeatingGameObject().startupRepeatingGameObject(g_ResourceManager.background1, 0, 110, 4, 600, 320, 1);
-        this.mountains = new RepeatingGameObject().startupRepeatingGameObject(g_ResourceManager.mountains, 0, 0, 3, 600, 320, 0.15);
+        this.background4 = new RepeatingGameObject().startupRepeatingGameObject(g_ResourceManager.background1, 0, 110, 3, 600, 320, 1);
+        this.mountains = new RepeatingGameObject().startupRepeatingGameObject(g_ResourceManager.mountains, 0, 0, 2, 600, 320, 0.15);
         this.background = new RepeatingGameObject().startupRepeatingGameObject(g_ResourceManager.background0, 0, 0, 1, 600, 320, 0.05);
         g_player = new Player().startupPlayer(this.level);
         g_scoreObject = new ScoreObject().startUpScore();

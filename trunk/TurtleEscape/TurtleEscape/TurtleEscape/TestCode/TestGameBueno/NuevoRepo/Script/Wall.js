@@ -74,7 +74,7 @@ function Wall()
         if (this.collisionArea().intersects(g_player.collisionArea()) && this.active) {
             if (!g_player.isClimbing) {
                 //g_player.x = this.x - this.wallWidth;
-                g_player.startClimbing();
+                g_player.startClimbing(this);
                 this.active = false;
             }
         }
