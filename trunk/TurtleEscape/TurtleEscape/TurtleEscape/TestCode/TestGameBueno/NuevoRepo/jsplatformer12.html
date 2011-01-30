@@ -7,6 +7,7 @@
 		    <script type="text/javascript" src="HelperFunctions.js"></script>
 			
     <script type="text/javascript" src="ResourceManager.js"></script>
+    <script type="text/javascript" src="SoundManager.js"></script>
     <script type="text/javascript" src="Rectangle.js"></script>
     <script type="text/javascript" src="GameObject.js"></script>
 	<script type="text/javascript" src="VisualGameObject.js"></script>
@@ -30,18 +31,13 @@
 	</style>
 </head>
 <body>
-    <p>
-		<a href="http://www.brighthub.com/internet/web-development/articles/38364.aspx">
-			Game Development with Javascript and the canvas element
-		</a>
-	</p>
-    <canvas id="canvas" width="600" height="400">
-        <p>
-            Your browser does not support the canvas element.
-        </p>
-    </canvas>
-    <div>Current Score </div>
-    <div id="Score">0</div>
+    <div style="width:100%; text-align:center">
+        <canvas id="canvas" width="600" height="400" onmouseover="">
+            <p>
+                Your browser does not support the canvas element.
+            </p>
+        </canvas>
+    </div>
 	<div id="debug"></div>	
 </body>
 </html>

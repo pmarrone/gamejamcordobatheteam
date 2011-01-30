@@ -59,10 +59,6 @@ function ApplicationManager()
         this.mainMenu = new MainMenu().startupMainMenu();
     }
 
-    this.updateScore = function()
-    {
-		//Draw score here.
-        //var score = document.getElementById("Score");
-        //score.innerHTML = String(g_score);
+    this.updateScore = function() {
     }
 }

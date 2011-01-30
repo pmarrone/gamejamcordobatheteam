@@ -76,6 +76,7 @@ function KeySwitchHandler(keyOne,keyTwo){
 	    } else if (this.stage == 1 && this.isKeyOnePressed && !this.isKeyTwoPressed) {
 	        this.stage = 1;
 	    } else if (this.stage == 1 && this.isKeyOnePressed && this.isKeyTwoPressed) {
+	        //g_SoundManager.steep1.play();
 	        this.stage = 2;
 	        getImpulse = true;
 	    } else if (this.stage == 2 && this.isKeyOnePressed && this.isKeyTwoPressed) {
@@ -85,6 +86,7 @@ function KeySwitchHandler(keyOne,keyTwo){
 	    } else if (this.stage == 3 && !this.isKeyOnePressed && this.isKeyTwoPressed) {
 	        this.stage = 3;
 	    } else if (this.stage == 3 && this.isKeyOnePressed && this.isKeyTwoPressed) {
+	        //g_SoundManager.steep2.play();
 	        this.stage = 0;
 	        getImpulse = true;
 	    } else {
