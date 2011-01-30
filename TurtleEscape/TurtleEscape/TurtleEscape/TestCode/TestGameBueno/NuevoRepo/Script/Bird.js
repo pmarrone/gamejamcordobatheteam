@@ -25,6 +25,7 @@ function Bird() {
         if (this.x + this.image.width < g_GameObjectManager.xScroll) {
             g_score += 20;
             deathBirds++;
+            g_SoundManager.doSizzle();
 
             if (deathBirds == nextBirds) {
                 new Achievement().startupAchievement(g_ResourceManager.woodenFingersL,

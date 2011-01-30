@@ -141,7 +141,7 @@ function GameObjectManager()
 
             { name: 'rabbit', src: 'Image/rabbit.png' },
             { name: 'bird', src: 'Image/bird.png' },
-
+            { name: 'oldGuy', src: 'Image/oldGuy.png' },
 			{ name: 'numbers', src: 'Image/numbers.png'}]);
 
 
@@ -150,8 +150,10 @@ function GameObjectManager()
              { name: 'start', src: 'Sound/star.mp3' },
              { name: 'bubuzela', src: 'Sound/cheer3.wav' },
              { name: 'mezcla', src: 'Sound/mezcla.mp3' },
-             { name: 'alarm', src: 'Sound/alarm.wav' }
-            
+             { name: 'sizzle1', src: 'Sound/sizzle1.mp3' },
+             { name: 'sizzle2', src: 'Sound/sizzle2.mp3' },
+             { name: 'sizzle3', src: 'Sound/sizzle3.mp3' },
+             { name: 'alarm', src: 'Sound/alarm.wav' }            
             ]);
 
 
