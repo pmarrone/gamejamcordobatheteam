@@ -16,6 +16,7 @@ function Wall()
     this.Reset = function (x) {
         this.x = x;
         this.active = true;
+        this.image = this.getRandomImage();
     }
 
     this.active = true;
@@ -32,8 +33,7 @@ function Wall()
         @param z            The depth
         @param fps          The frames per second to animate this object at
      */
-    this.startupWall = function(/**Image*/ image, /**Number*/ x, /**Number*/ y, /**Number*/ z)
-    {
+    this.startupWall = function(/**Image*/ image, /**Number*/ x, /**Number*/ y, /**Number*/ z) {
         this.startupVisualGameObject(image,x,y,z);
         this.wallPositionX = x;
         this.wallPositionY = y;
@@ -44,6 +44,19 @@ function Wall()
     this.shutdownWall = function()
     {
         this.shutdownVisualGameObject();
+    }
+
+    this.getRandomImage = function () {
+        x = parseInt(Math.random() * 3);
+        switch (x) {
+            case 0:
+                return g_ResourceManager.wall;
+            case 1:
+                return g_ResourceManager.freezer;
+            case 2:
+                return g_ResourceManager.totem;        
+        }
+        g_ResourceManager.wall
     }
 
     /**
@@ -68,7 +81,7 @@ function Wall()
 
 
         //X out of screen
-        if (this.x < g_GameObjectManager.xScroll) {
+        if (this.x + this.wallWidth < g_GameObjectManager.xScroll) {
             this.EventPointer(self);
         }
 

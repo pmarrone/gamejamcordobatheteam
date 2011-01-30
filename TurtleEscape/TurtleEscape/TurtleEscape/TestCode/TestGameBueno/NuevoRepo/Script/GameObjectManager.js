@@ -118,6 +118,8 @@ function GameObjectManager()
             { name: 'lava', src: 'Image/magmas.png' },
 //            { name: 'gem', src: 'Image/Gem.png' },
             { name: 'wall', src: 'Image/pared.png' },
+            { name: 'freezer', src: 'Image/heladera.png' },
+            { name: 'totem', src: 'Image/totem.png' },                        
             { name: 'mainmenu', src: 'Image/mainmenu.png' },
 //            { name: 'portal', src: 'Image/portal.png' },
             { name: 'credits', src: 'Image/credits.png' },
@@ -125,12 +127,13 @@ function GameObjectManager()
             { name: 'menufont', src: 'Image/menufont.png' },
             { name: 'backButton', src: 'Image/backButton.png' },
             { name: 'speed', src: 'Image/speed.png' },
+            //teclas
             { name: 'A', src: 'Image/A.png' },
             { name: 'D', src: 'Image/D.png' },
             { name: 'W', src: 'Image/W.png' },
             { name: 'S', src: 'Image/S.png' },
             { name: 'WS', src: 'Image/WS.png' },
-            { name: 'AD', src: 'Image/AD.png' },
+            { name: 'AD', src: 'Image/AD.png' },            
             { name: 'hurryUpSign', src: 'Image/hurryUpSign.png' },
 			{ name: 'numbers', src: 'Image/numbers.png'}]);
 
