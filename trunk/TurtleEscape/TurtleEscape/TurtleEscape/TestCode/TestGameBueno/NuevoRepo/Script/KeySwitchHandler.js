@@ -1,4 +1,7 @@
-function KeySwitchHandler(keyOne,keyTwo){
+function KeySwitchHandler(keyOne, keyTwo) {
+
+    var achivCounter = 0;
+
 	this.isKeyOnePressed = false;
 	this.isKeyTwoPressed = false;
 	
@@ -78,6 +81,7 @@ function KeySwitchHandler(keyOne,keyTwo){
 	    } else if (this.stage == 1 && this.isKeyOnePressed && this.isKeyTwoPressed) {
 	        //	        g_SoundManager.PlayRecycled(g_SoundManager.steep1);
 	        g_score++;
+	        achivCounter++;
 	        this.stage = 2;
 	        getImpulse = true;
 	    } else if (this.stage == 2 && this.isKeyOnePressed && this.isKeyTwoPressed) {
@@ -89,6 +93,7 @@ function KeySwitchHandler(keyOne,keyTwo){
 	    } else if (this.stage == 3 && this.isKeyOnePressed && this.isKeyTwoPressed) {
 	        //	        g_SoundManager.PlayRecycled(g_SoundManager.steep2);
 	        g_score++;
+	        achivCounter++;
 	        this.stage = 0;
 	        getImpulse = true;
 	    } else {
@@ -113,5 +118,11 @@ function KeySwitchHandler(keyOne,keyTwo){
 	    this.lastKeyCombo = this.currentKeyCombo;
 	    this.wasActive = this.isActive;
 	    g_speed = this.impulse;
+
+	    if (achivCounter == 1000) {
+	        new Achievement().startupAchievement(g_ResourceManager.woodenFingersL,
+                    g_ResourceManager.woodenFingersS, "Wood fingers.");
+	        achivCounter = 0;
+	    }
 	}
 }
