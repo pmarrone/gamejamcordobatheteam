@@ -153,7 +153,16 @@ function Player() {
         @param xScroll The global scrolling value of the x axis
         @param yScroll The global scrolling value of the y axis
     */
+    this.getDistanceToLava = function () {
+        return this.x - g_mainMagma.x;
+    }
+
     this.update = function (/**Number*/dt, /**CanvasRenderingContext2D*/context, /**Number*/xScroll, /**Number*/yScroll) {
+        //Check for gameOver
+        if (this.getDistanceToLava() < 100) {
+            g_SoundManager.alarm.pause();
+            g_ApplicationManager.openGameOverMenu();
+        }
 
         doState(this.self);
 

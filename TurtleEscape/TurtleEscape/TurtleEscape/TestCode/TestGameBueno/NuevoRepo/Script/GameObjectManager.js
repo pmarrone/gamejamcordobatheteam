@@ -131,6 +131,7 @@ function GameObjectManager()
             { name: 'S', src: 'Image/S.png' },
             { name: 'WS', src: 'Image/WS.png' },
             { name: 'AD', src: 'Image/AD.png' },
+            { name: 'hurryUpSign', src: 'Image/hurryUpSign.png' },
 			{ name: 'numbers', src: 'Image/numbers.png'}]);
 
 	    new SoundManager().startupSoundManager(

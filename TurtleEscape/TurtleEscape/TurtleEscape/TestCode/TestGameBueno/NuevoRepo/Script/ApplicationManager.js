@@ -50,6 +50,8 @@ function ApplicationManager()
         //************
 
         g_KeyHelping = new KeyHelpingDraw().startKeyHelpingDraw();
+        new HurryUpSign().startHurryUpSign();
+
 
         this.updateScore();
     }
@@ -58,8 +60,7 @@ function ApplicationManager()
         g_GameObjectManager.shutdownAll();
         g_GameObjectManager.xScroll = 0;
         g_GameObjectManager.yScroll = 0;
-        g_score = 0;
-        this.mainMenu = new MainMenu().startupMainMenu();
+        this.gameOverMenu = new GameOverMenu().startupGameOverMenu();
     }
 
     this.openMainMenu = function()
