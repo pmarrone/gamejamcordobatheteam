@@ -48,7 +48,7 @@ function ApplicationManager()
         new Magma().startUpMagma(-20, 20, 4.4, 0.5);
         new Magma().startUpMagma(-10, 60, 10, 1);
         new Magma().startUpMagma(-20, 10, 4.4, 1.3);
-        new Magma().startUpMagma(-80, 70, 11, 0.9);
+        new Magma().startUpMagma(-60, 70, 12, 0.9);
         //************
 
         g_KeyHelping = new KeyHelpingDraw().startKeyHelpingDraw();

@@ -1,7 +1,7 @@
 function Bird() {
 
     var deathBirds = 0;
-    var nextBirds = 10;
+    var nextBirds = 4;
 
     this.startupBird = function () {
         this.startupAnimatedGameObject(g_ResourceManager.bird, 0, g_floor - 80, 8,
