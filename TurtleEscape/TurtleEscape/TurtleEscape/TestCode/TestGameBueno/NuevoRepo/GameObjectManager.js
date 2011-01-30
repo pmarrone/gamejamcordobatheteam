@@ -72,34 +72,40 @@ function GameObjectManager()
         Initialises this object
         @return A reference to the initialised object
     */
-    this.startupGameObjectManager = function()
-    {
-        // set the global pointer to reference this object
-        g_GameObjectManager = this;
+	this.startupGameObjectManager = function () {
+	    // set the global pointer to reference this object
+	    g_GameObjectManager = this;
 
-        // watch for keyboard events
-        document.onkeydown = function(event){g_GameObjectManager.keyDown(event);}
-        document.onkeyup = function(event){g_GameObjectManager.keyUp(event);}
+	    // watch for keyboard events
+	    document.onkeydown = function (event) { g_GameObjectManager.keyDown(event); }
+	    document.onkeyup = function (event) { g_GameObjectManager.keyUp(event); }
 
-        // get references to the canvas elements and their 2D contexts
-        this.canvas = document.getElementById('canvas');
+	    // get references to the canvas elements and their 2D contexts
+	    this.canvas = document.getElementById('canvas');
 
-        // if the this.canvas.getContext function does not exist it is a safe bet that
-        // the current browser does not support the canvas element.
-        // in this case we don't go any further, which will save some debuggers (like
-        // the IE8 debugger) from throwing up a lot of errors.
-        if (this.canvas.getContext)
-        {
-            this.canvasSupported = true;
-            this.context2D = this.canvas.getContext('2d');
-            this.backBuffer = document.createElement('canvas');
-            this.backBuffer.width = this.canvas.width;
-            this.backBuffer.height = this.canvas.height;
-            this.backBufferContext2D = this.backBuffer.getContext('2d');
-        }
+	    this.canvas.onmousedown = function (event) {
+	        g_GameObjectManager.MouseDownHook(event);
+	    }
 
-        // create a new ResourceManager
-        new ResourceManager().startupResourceManager(
+	    this.canvas.onmousemove = function (event) {
+	        g_GameObjectManager.MouseMoveHook(event);
+	    }
+
+	    // if the this.canvas.getContext function does not exist it is a safe bet that
+	    // the current browser does not support the canvas element.
+	    // in this case we don't go any further, which will save some debuggers (like
+	    // the IE8 debugger) from throwing up a lot of errors.
+	    if (this.canvas.getContext) {
+	        this.canvasSupported = true;
+	        this.context2D = this.canvas.getContext('2d');
+	        this.backBuffer = document.createElement('canvas');
+	        this.backBuffer.width = this.canvas.width;
+	        this.backBuffer.height = this.canvas.height;
+	        this.backBufferContext2D = this.backBuffer.getContext('2d');
+	    }
+
+	    // create a new ResourceManager
+	    new ResourceManager().startupResourceManager(
             [{ name: 'runRight', src: 'run_right.png' },
             { name: 'climb', src: 'trepada.png' },
             { name: 'idleRight', src: 'parado.png' },
@@ -117,14 +123,22 @@ function GameObjectManager()
             { name: 'credits', src: 'credits.png' },
             { name: 'gameOver', src: 'gameOver.png' },
             { name: 'menufont', src: 'menufont.png' },
+            { name: 'backButton', src: 'backButton.png' },
 			{ name: 'numbers', src: 'numbers.png'}]);
-          
 
-        // use setInterval to call the draw function
-        setInterval(function(){g_GameObjectManager.draw();}, SECONDS_BETWEEN_FRAMES);
-        
-        return this;        
-    }
+	    new SoundManager().startupSoundManager(
+            [{ name: 'credits', src: 'credits.mp3' },
+             { name: 'start', src: 'star.mp3' },
+             /*{ name: 'steep1', src: 'steep1.mp3' },
+             { name: 'steep2', src: 'steep2.mp3' }*/
+            ]);
+
+
+	    // use setInterval to call the draw function
+	    setInterval(function () { g_GameObjectManager.draw(); }, SECONDS_BETWEEN_FRAMES);
+
+	    return this;
+	}
     
     /**
         The render loop
@@ -280,5 +294,21 @@ function GameObjectManager()
 	
 	this.SortObjects = function() {
 		this.gameObjects.sort(function(a,b){return a.zOrder - b.zOrder;});
-	}
+    }
+
+    this.MouseDownHook = function(evt) {
+        for (var x = 0; x < this.gameObjects.length; ++x) {
+            if (this.gameObjects[x].MouseDown) {
+                this.gameObjects[x].MouseDown(event);
+            }
+        }
+    }
+
+    this.MouseMoveHook = function (evt) {
+        for (var x = 0; x < this.gameObjects.length; ++x) {
+            if (this.gameObjects[x].MouseMove) {
+                this.gameObjects[x].MouseMove(event);
+            }
+        }
+    }
 }

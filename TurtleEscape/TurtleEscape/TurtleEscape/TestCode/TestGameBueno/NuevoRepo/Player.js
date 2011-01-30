@@ -167,7 +167,7 @@ function Player() {
 	function run(self) {
 		self.keyHandler.update();
 		var updateRequired = false;
-		if (self.keyHandler.impulse > 0){			
+		if (self.keyHandler.impulse > 0){
 			self.x += self.speed * (self.keyHandler.impulse / self.keyHandler.resetImpulse);
 			self.right = true;
 			if (self.isStopped){				

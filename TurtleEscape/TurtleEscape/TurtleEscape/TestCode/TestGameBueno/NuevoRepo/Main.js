@@ -40,6 +40,8 @@ var g_speed = 0;
 
 var g_followingTurle = false;
 
+var g_SoundManager = null;
+
 // The entry point of the application is set to the init function
 window.onload = init;
 
