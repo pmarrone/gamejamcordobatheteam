@@ -9,10 +9,6 @@ function HurryUpSign() {
 
     }
 
-    this.isClimbing = function (climb) {
-        doClimb = climb;
-    }
-
     this.update = function (dt, context, xScroll, yScroll) {
         isEndangered = (g_player.getDistanceToLava() < 150);
     }

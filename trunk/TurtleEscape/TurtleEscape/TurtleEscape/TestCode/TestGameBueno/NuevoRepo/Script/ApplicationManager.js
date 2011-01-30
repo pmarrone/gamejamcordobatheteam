@@ -43,6 +43,8 @@ function ApplicationManager()
         g_SoundManager.mezcla.loop = "loop";
         g_SoundManager.mezcla.play();
         g_mainMagma = new Magma().startUpMagma(-10, 30, 10);
+        g_AchievementManager = new AchievementManager().startupAchievementManager();
+
         new Magma().startUpMagma(-20, 20, 4.4, 0.5);
         new Magma().startUpMagma(-10, 60, 10, 1);
         new Magma().startUpMagma(-20, 10, 4.4, 1.3);
