@@ -52,6 +52,14 @@ function ApplicationManager()
         this.updateScore();
     }
 
+    this.openGameOverMenu = function () {
+        g_GameObjectManager.shutdownAll();
+        g_GameObjectManager.xScroll = 0;
+        g_GameObjectManager.yScroll = 0;
+        g_score = 0;
+        this.mainMenu = new MainMenu().startupMainMenu();
+    }
+
     this.openMainMenu = function()
     {
         g_GameObjectManager.shutdownAll();

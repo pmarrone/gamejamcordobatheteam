@@ -124,6 +124,7 @@ function GameObjectManager()
             { name: 'gameOver', src: 'gameOver.png' },
             { name: 'menufont', src: 'menufont.png' },
             { name: 'backButton', src: 'backButton.png' },
+            { name: 'gameOver', src: 'gameOver.png' },
             { name: 'speed', src: 'speed.png' },
 			{ name: 'numbers', src: 'numbers.png'}]);
 
