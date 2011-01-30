@@ -29,7 +29,7 @@ function Magma() {
         if (!g_followingTurtle) {
             g_GameObjectManager.xScroll = this.x;
         }
-        this.x += 0.18;
+        this.x += 0.22;
 
         if (this.x + 150 > g_player.x) {
             //debug("Game over!");
