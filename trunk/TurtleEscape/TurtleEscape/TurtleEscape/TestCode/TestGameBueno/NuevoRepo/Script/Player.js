@@ -53,7 +53,7 @@ function Player() {
     /** the players running speed
         @type Number
      */
-    //this.speed = 2.2;
+    //this.speed = 20.2;
     this.speed = 0.3;
 	/** 
      */
@@ -209,7 +209,7 @@ function Player() {
 		self.keyHandler.update();
 		var updateRequired = false;
 		if (self.keyHandler.impulse > 0){
-		    self.climbStage += 0.15 * (self.keyHandler.impulse / self.keyHandler.resetImpulse);
+		    self.climbStage += 0.16 * (self.keyHandler.impulse / self.keyHandler.resetImpulse);
 
 		    if (self.climbStage > 9 && self.climbStage < 12) {
 		        var newFrame = parseInt(self.climbStage);
