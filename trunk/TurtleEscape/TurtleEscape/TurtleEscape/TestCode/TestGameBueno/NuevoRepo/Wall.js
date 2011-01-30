@@ -9,6 +9,15 @@ function Wall()
     /** Position of the wall
         @type Number
      */
+    var self = this;
+
+    this.EventPointer = function () { };
+
+    this.Reset = function (x) {
+        this.x = x;
+        this.active = true;
+    }
+
     this.active = true;
     this.wallPositionX = 0;
     this.wallPositionY = 0;
@@ -56,6 +65,13 @@ function Wall()
                 this.active = false;
             }
         }
+
+
+        //X out of screen
+        if (this.x < g_GameObjectManager.xScroll) {
+            this.EventPointer(self);
+        }
+
     }
 }
 

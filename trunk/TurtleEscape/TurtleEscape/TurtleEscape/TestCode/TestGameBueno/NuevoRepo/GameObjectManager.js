@@ -114,6 +114,9 @@ function GameObjectManager()
             { name: 'wall', src: 'pared.png' },
             { name: 'mainmenu', src: 'mainmenu.png' },
             { name: 'portal', src: 'portal.png' },
+            { name: 'credits', src: 'credits.png' },
+            { name: 'gameOver', src: 'gameOver.png' },
+            { name: 'menufont', src: 'menufont.png' },
 			{ name: 'numbers', src: 'numbers.png'}]);
           
 
