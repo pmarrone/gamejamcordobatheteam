@@ -27,17 +27,14 @@ function Bird() {
             deathBirds++;
             g_SoundManager.doSizzle();
 
-            new Achievement().startupAchievement(g_ResourceManager.woodenFingersL,
-                    g_ResourceManager.woodenFingersS, "      " + deathBirds + " birds burned.");
-
             if (deathBirds == nextBirds) {
-                new Achievement().startupAchievement(g_ResourceManager.woodenFingersL,
-                    g_ResourceManager.woodenFingersS, "      " + deathBirds + " birds burned.");
+                new Achievement().startupAchievement(g_ResourceManager.hotchickenL,
+                    g_ResourceManager.hotchickenS, "      " + deathBirds + " birds burned.");
                 nextBirds *= 5;
                 deathBirds = 0;
             }
 
-            this.x = g_GameObjectManager.xScroll + 275 + Math.random() * 500;
+            this.x = g_GameObjectManager.xScroll + 2750 + Math.random() * 500;
         }
     }
 }
