@@ -42,6 +42,8 @@ var g_followingTurle = false;
 
 var g_SoundManager = null;
 
+var g_KeyHelping = null;
+
 // The entry point of the application is set to the init function
 window.onload = init;
 

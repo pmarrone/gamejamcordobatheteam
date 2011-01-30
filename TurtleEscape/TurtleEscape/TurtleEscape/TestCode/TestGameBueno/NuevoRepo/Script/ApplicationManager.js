@@ -49,6 +49,8 @@ function ApplicationManager()
         new Magma().startUpMagma(-80, 70, 11, 0.9);
         //************
 
+        g_KeyHelping = new KeyHelpingDraw().startKeyHelpingDraw();
+
         this.updateScore();
     }
 
