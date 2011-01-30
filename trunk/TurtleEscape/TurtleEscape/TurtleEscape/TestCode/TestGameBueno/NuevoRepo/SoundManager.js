@@ -16,4 +16,13 @@ function SoundManager() {
 
         return this;
     }
+
+//    this.PlayRecycled = function (sound) {
+//        sound.pause();
+//        sound.currentTime = 0;
+//        sound.play();
+//        //        var recycledAudio = new Audio();
+//        //        recycledAudio.src = sound.src;
+//        //        recycledAudio.play();
+//    }
 }
