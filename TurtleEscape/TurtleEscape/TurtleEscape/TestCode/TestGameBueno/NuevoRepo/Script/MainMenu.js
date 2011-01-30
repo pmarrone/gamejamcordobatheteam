@@ -27,6 +27,12 @@ function MainMenu() {
         if (startRectangle.intersects(new Rectangle().startupRectangle(event.offsetX,
             event.offsetY, 2, 2)) && !isShowingCredits) {
             g_SoundManager.bubuzela.play();
+
+            g_SoundManager.mainTheme.pause();
+            g_SoundManager.mainTheme.currentTime = 0;
+            g_SoundManager.mainTheme.volume = 0.15;
+            g_SoundManager.mainTheme.loop = "loop";
+            g_SoundManager.mainTheme.play();
             g_ApplicationManager.startLevel();
         }
 

@@ -11,6 +11,9 @@ function GameOverMenu() {
     }
 
     this.MouseDown = function (event) {
+        g_SoundManager.mainTheme.pause();
+        g_SoundManager.mainTheme.currentTime = 0;
+
         g_ApplicationManager.openMainMenu();        
     }
 
