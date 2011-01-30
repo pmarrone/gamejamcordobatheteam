@@ -125,6 +125,12 @@ function GameObjectManager()
             { name: 'menufont', src: 'Image/menufont.png' },
             { name: 'backButton', src: 'Image/backButton.png' },
             { name: 'speed', src: 'Image/speed.png' },
+            { name: 'A', src: 'Image/A.png' },
+            { name: 'D', src: 'Image/D.png' },
+            { name: 'W', src: 'Image/W.png' },
+            { name: 'S', src: 'Image/S.png' },
+            { name: 'WS', src: 'Image/WS.png' },
+            { name: 'AD', src: 'Image/AD.png' },
 			{ name: 'numbers', src: 'Image/numbers.png'}]);
 
 	    new SoundManager().startupSoundManager(

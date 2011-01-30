@@ -104,6 +104,7 @@ function Player() {
 
     this.startClimbing = function () {
         this.isClimbing = true;
+        g_KeyHelping.isClimbing(true);
 
         this.keyHandler.SetKeys(87, 83);
         this.keyHandler.impulse *= 0.5;
@@ -114,11 +115,12 @@ function Player() {
         this.zOrder += climbZOffset;
         g_GameObjectManager.SortObjects();
         alreadyReset = false;
+    }
+
+    this.stopClimbing = function () {
+        this.isClimbing = false;
+        g_KeyHelping.isClimbing(false);
     }	
-	
-	this.stopClimbing = function() {
-		this.isClimbing = false;
-	}	
 
     this.keyUp = function (event) {
 		this.keyHandler.onKeyUp(event);
@@ -218,6 +220,7 @@ function Player() {
 		        //Stop climbing
 		        self.climbStage = 0;
 		        self.isClimbing = false;
+		        g_KeyHelping.isClimbing(false);
 		        self.keyHandler.SetKeys(65, 68);
 
 		        self.left = false;
