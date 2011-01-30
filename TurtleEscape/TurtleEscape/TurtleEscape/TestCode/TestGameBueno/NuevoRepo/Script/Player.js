@@ -172,8 +172,8 @@ function Player() {
             g_GameObjectManager.xScroll = (this.x) - this.screenBorder;
         }
 
-        g_score = parseInt(g_player.x);
-        g_ApplicationManager.updateScore();
+        //g_score = parseInt(g_player.x);
+        //g_ApplicationManager.updateScore();
     }
 	
 	function run(self) {

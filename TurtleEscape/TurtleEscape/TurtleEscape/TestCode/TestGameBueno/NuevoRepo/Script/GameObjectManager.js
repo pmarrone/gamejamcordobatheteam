@@ -135,6 +135,10 @@ function GameObjectManager()
             { name: 'WS', src: 'Image/WS.png' },
             { name: 'AD', src: 'Image/AD.png' },            
             { name: 'hurryUpSign', src: 'Image/hurryUpSign.png' },
+
+            { name: 'rabbit', src: 'Image/rabbit.png' },
+            { name: 'bird', src: 'Image/bird.png' },
+
 			{ name: 'numbers', src: 'Image/numbers.png'}]);
 
 	    new SoundManager().startupSoundManager(
