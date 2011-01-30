@@ -127,6 +127,9 @@ function GameObjectManager()
             { name: 'menufont', src: 'Image/menufont.png' },
             { name: 'backButton', src: 'Image/backButton.png' },
             { name: 'speed', src: 'Image/speed.png' },
+
+            { name: 'woodenFingersL', src: 'Image/woodenFingersL.png' },
+            { name: 'woodenFingersS', src: 'Image/woodenFingersS.png' },
             //teclas
             { name: 'A', src: 'Image/A.png' },
             { name: 'D', src: 'Image/D.png' },
@@ -141,12 +144,14 @@ function GameObjectManager()
 
 			{ name: 'numbers', src: 'Image/numbers.png'}]);
 
+
 	    new SoundManager().startupSoundManager(
             [{ name: 'credits', src: 'Sound/credits.mp3' },
              { name: 'start', src: 'Sound/star.mp3' },
              { name: 'bubuzela', src: 'Sound/cheer3.wav' },
              { name: 'mezcla', src: 'Sound/mezcla.mp3' },
              { name: 'alarm', src: 'Sound/alarm.wav' }
+            
             ]);
 
 

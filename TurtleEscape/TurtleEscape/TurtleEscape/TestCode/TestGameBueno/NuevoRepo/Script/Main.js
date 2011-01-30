@@ -44,6 +44,8 @@ var g_SoundManager = null;
 
 var g_KeyHelping = null;
 
+var g_AchievementManager = null;
+
 // The entry point of the application is set to the init function
 window.onload = init;
 
