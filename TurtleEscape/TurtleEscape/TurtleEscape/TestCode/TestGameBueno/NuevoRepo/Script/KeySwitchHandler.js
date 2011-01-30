@@ -120,7 +120,7 @@ function KeySwitchHandler(keyOne, keyTwo) {
 	    this.wasActive = this.isActive;
 	    g_speed = this.impulse;
 
-	    if (achivCounter == (500 * (achivNext + 1))) {
+	    if (achivCounter == (100 * (achivNext + 1))) {
 	        switch (achivNext) {
 	            case 0:
 	                new Achievement().startupAchievement(g_ResourceManager.woodenFingersL,

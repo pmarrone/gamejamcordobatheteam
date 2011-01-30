@@ -87,7 +87,7 @@ function Player() {
     */
     this.startupPlayer = function(level)
     {
-        this.startupAnimatedGameObject(g_ResourceManager.idleRight, 0, g_floor - g_ResourceManager.runRight.height, 4, 6, 20);
+        this.startupAnimatedGameObject(g_ResourceManager.idleRight, 0 - 199, g_floor - g_ResourceManager.runRight.height, 4, 6, 20);
         this.level = level;
         return this;
     }

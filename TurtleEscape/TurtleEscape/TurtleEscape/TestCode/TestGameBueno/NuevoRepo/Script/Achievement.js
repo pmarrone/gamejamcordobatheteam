@@ -29,7 +29,7 @@
     var counter = 0;
 
     this.draw = function (dt, canvasContext, xScroll, yScroll) {
-        if (counter > 100 && !stored) {
+        if (counter > 200 && !stored) {
             stored = true;
             g_AchievementManager.add(this);
         } else {

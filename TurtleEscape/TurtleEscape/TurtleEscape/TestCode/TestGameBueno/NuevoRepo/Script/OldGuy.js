@@ -2,7 +2,7 @@
 
     this.startupOldGuy = function () {
         this.startupVisualGameObject(g_ResourceManager.oldGuy, 120 + Math.random() * 50, 0, 11,
-            12, 3);
+            11.5, 3);
         this.y = g_floor - this.image.height + 25 + Math.random() * 20;
         return this;
     }

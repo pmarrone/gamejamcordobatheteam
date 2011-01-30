@@ -25,7 +25,7 @@ function Rabbit() {
 	}
 
 	this.rebornRabbit = function () {
-		this.startupAnimatedGameObject(g_ResourceManager.rabbit, 0, g_floor + 5, 8, 12, 3);
+		this.startupAnimatedGameObject(g_ResourceManager.rabbit, 0, this.y + 13, 8, 12, 3);
 		this.x = g_GameObjectManager.xScroll + 600 + Math.random() * 100;
 	}
 
