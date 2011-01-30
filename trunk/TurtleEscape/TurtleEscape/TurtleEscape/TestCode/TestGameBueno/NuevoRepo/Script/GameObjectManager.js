@@ -151,6 +151,7 @@ function GameObjectManager()
             { name: 'hurryUpSign', src: 'Image/hurryUpSign.png' },
 
             { name: 'rabbit', src: 'Image/rabbit.png' },
+            { name: 'rabbitBurn', src: 'Image/rabbitBurn.png' },
             { name: 'bird', src: 'Image/bird.png' },
             { name: 'oldGuy', src: 'Image/oldGuy.png' },
 			{ name: 'numbers', src: 'Image/numbers.png'}]);
