@@ -161,6 +161,7 @@ function Player() {
         //Check for gameOver
         if (this.getDistanceToLava() < 100) {
             g_SoundManager.alarm.pause();
+            g_SoundManager.mezcla.pause();
             g_ApplicationManager.openGameOverMenu();
         }
 
