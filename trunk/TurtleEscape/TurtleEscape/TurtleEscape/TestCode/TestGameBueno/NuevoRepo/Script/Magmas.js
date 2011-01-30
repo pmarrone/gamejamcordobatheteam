@@ -29,11 +29,7 @@ function Magma() {
         if (!g_followingTurtle) {
             g_GameObjectManager.xScroll = this.x;
         }
-        this.x += 0.22;
-
-        if (this.x + 150 > g_player.x) {
-            //debug("Game over!");
-        }
+        this.x += 0.165;
     }
 
     this.draw = function (dt, canvasContext, xScroll, yScroll) {
