@@ -4,8 +4,9 @@
     @author <a href="mailto:matthewcasperson@gmail.com">Matthew Casperson</a>
     @class
 */
-function RepeatingGameObject()
-{
+function RepeatingGameObject() {
+
+    this.onCycle = null;
     /** The width that the final image will take up
 		@type Number
 	*/
@@ -68,9 +69,11 @@ function RepeatingGameObject()
             }
         }
     }
+
     
     this.drawRepeat = function(canvas, newPosition, newFillArea, newScrollPosition)
     {
+
         // find where in our repeating texture to start drawing (the top left corner)
         var xOffset = Math.abs(newScrollPosition[0]) % this.image.width;
         var yOffset = Math.abs(newScrollPosition[1]) % this.image.height;
@@ -80,7 +83,7 @@ function RepeatingGameObject()
         var height = newFillArea[1] < this.image.height-top?newFillArea[1]:this.image.height-top;
         
         // draw the image
-        canvas.drawImage(this.image, left, top, width, height, newPosition[0], newPosition[1], width, height);
+        canvas.drawImage(this.image, left, top, width - 1, height - 1, newPosition[0], newPosition[1], width, height);
         
         return [width, height];
     }

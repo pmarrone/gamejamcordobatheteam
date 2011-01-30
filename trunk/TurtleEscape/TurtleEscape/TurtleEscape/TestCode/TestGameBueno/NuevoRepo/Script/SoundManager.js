@@ -35,7 +35,7 @@ function SoundManager() {
                 soundName = this.sizzle1;
                 break;
         }
-
+        soundName.currentTime = 0;
         soundName.play();
     } 
            

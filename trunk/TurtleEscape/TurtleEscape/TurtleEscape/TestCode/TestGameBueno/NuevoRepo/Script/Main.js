@@ -34,7 +34,7 @@ var g_scoreObject = null;
 
 var g_mainMagma = null;
 
-var g_floor = 290;
+var g_floor = 300;
 
 var g_speed = 0;
 
