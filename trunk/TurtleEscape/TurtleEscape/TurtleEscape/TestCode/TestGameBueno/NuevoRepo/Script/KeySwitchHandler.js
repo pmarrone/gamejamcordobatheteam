@@ -1,6 +1,7 @@
 function KeySwitchHandler(keyOne, keyTwo) {
 
     var achivCounter = 0;
+    var achivNext = 0;
 
 	this.isKeyOnePressed = false;
 	this.isKeyTwoPressed = false;
@@ -119,9 +120,25 @@ function KeySwitchHandler(keyOne, keyTwo) {
 	    this.wasActive = this.isActive;
 	    g_speed = this.impulse;
 
-	    if (achivCounter == 1000) {
-	        new Achievement().startupAchievement(g_ResourceManager.woodenFingersL,
-                    g_ResourceManager.woodenFingersS, "Wood fingers.");
+	    if (achivCounter == (500 * (achivNext + 1))) {
+	        switch (achivNext) {
+	            case 0:
+	                new Achievement().startupAchievement(g_ResourceManager.woodenFingersL,
+                        g_ResourceManager.woodenFingersS, "       Wood fingers.");
+	                achivNext++;
+	                break;
+	            case 1:
+	                new Achievement().startupAchievement(g_ResourceManager.silverFingerL,
+                        g_ResourceManager.silverFingerS, "       Silver fingers.");
+	                achivNext++;
+	                break;
+	            case 2:
+	                new Achievement().startupAchievement(g_ResourceManager.goldFingerL,
+                        g_ResourceManager.goldFingerS, "        Gold fingers.");
+	                break;
+	            default:
+	        }
+
 	        achivCounter = 0;
 	    }
 	}

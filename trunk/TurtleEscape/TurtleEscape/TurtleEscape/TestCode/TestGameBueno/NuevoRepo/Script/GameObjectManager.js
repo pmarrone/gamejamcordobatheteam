@@ -130,6 +130,11 @@ function GameObjectManager()
 
             { name: 'woodenFingersL', src: 'Image/woodenFingersL.png' },
             { name: 'woodenFingersS', src: 'Image/woodenFingersS.png' },
+            { name: 'silverFingerL', src: 'Image/silverFingerL.png' },
+            { name: 'silverFingerS', src: 'Image/silverFingerS.png' },
+            { name: 'goldFingerL', src: 'Image/goldFingerL.png' },
+            { name: 'goldFingerS', src: 'Image/goldFingerS.png' },
+
             //teclas
             { name: 'A', src: 'Image/A.png' },
             { name: 'D', src: 'Image/D.png' },
