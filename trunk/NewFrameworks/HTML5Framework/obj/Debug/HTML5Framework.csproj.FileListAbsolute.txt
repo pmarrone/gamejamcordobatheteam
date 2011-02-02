@@ -1,0 +1,5 @@
+C:\Users\DoctorM\Desktop\HTML5Framework\HTML5Framework\bin\HTML5Framework.dll
+C:\Users\DoctorM\Desktop\HTML5Framework\HTML5Framework\bin\HTML5Framework.pdb
+C:\Users\DoctorM\Desktop\HTML5Framework\HTML5Framework\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\DoctorM\Desktop\HTML5Framework\HTML5Framework\obj\Debug\HTML5Framework.dll
+C:\Users\DoctorM\Desktop\HTML5Framework\HTML5Framework\obj\Debug\HTML5Framework.pdb
