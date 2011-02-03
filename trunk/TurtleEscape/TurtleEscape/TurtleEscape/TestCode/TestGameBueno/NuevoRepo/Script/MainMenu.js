@@ -24,26 +24,38 @@ function MainMenu() {
     }
 
     this.MouseDown = function (event) {
-        if (startRectangle.intersects(new Rectangle().startupRectangle(event.offsetX,
-            event.offsetY, 2, 2)) && !isShowingCredits) {
+		var offsetX = 0;
+		var offsetY = 0;
+		
+		if (event.offsetY) {
+			//Chrome and others
+			offsetX = event.offsetX;
+			offsetY = event.offsetY;
+		} else {
+			offsetX = event.clientX - event.currentTarget.offsetLeft;
+			offsetY = event.clientY; // - event.currentTarget.offsetHeight;
+		}
+	
+        if (startRectangle.intersects(new Rectangle().startupRectangle(offsetX,
+            offsetY, 2, 2)) && !isShowingCredits) {
             g_SoundManager.bubuzela.play();
 
-            g_SoundManager.mainTheme.pause();
-            g_SoundManager.mainTheme.currentTime = 0;
-            g_SoundManager.mainTheme.volume = 0.15;
-            g_SoundManager.mainTheme.loop = "loop";
+            //g_SoundManager.mainTheme.pause();
+            //g_SoundManager.mainTheme.currentTime = 0;
+            //g_SoundManager.mainTheme.volume = 0.15;
+            //g_SoundManager.mainTheme.loop = "loop";
             g_SoundManager.mainTheme.play();
             g_ApplicationManager.startLevel();
         }
 
-        if (creditRectangle.intersects(new Rectangle().startupRectangle(event.offsetX,
-            event.offsetY, 2, 2))) {
+        if (creditRectangle.intersects(new Rectangle().startupRectangle(offsetX,
+            offsetY, 2, 2))) {
             g_SoundManager.credits.play();
             isShowingCredits = true;
         }
 
-        if (backRectangle.intersects(new Rectangle().startupRectangle(event.offsetX,
-            event.offsetY, 2, 2))) {
+        if (backRectangle.intersects(new Rectangle().startupRectangle(offsetX,
+            offsetY, 2, 2))) {
             g_SoundManager.start.play();
             isShowingCredits = false;
         }
@@ -51,11 +63,23 @@ function MainMenu() {
 
     this.MouseMove = function (event) {
 
-        isStartOn = startRectangle.intersects(new Rectangle().startupRectangle(event.offsetX,
-            event.offsetY, 2, 2));
+		var offsetX = 0;
+		var offsetY = 0;
+		
+		if (event.offsetY) {
+			//Chrome and others
+			offsetX = event.offsetX;
+			offsetY = event.offsetY;
+		} else {
+			offsetX = event.clientX - event.currentTarget.offsetLeft;
+			offsetY = event.clientY; // - event.currentTarget.offsetHeight;
+		}
+		
+		debug("X: " + offsetX + ", Y: " + offsetY);
+		
+        isStartOn = startRectangle.intersects(new Rectangle().startupRectangle(offsetX, offsetY, 2, 2));
 
-        isCreditOn = creditRectangle.intersects(new Rectangle().startupRectangle(event.offsetX,
-            event.offsetY, 2, 2));
+        isCreditOn = creditRectangle.intersects(new Rectangle().startupRectangle(offsetX, offsetY, 2, 2));
     }
 
     this.draw = function (dt, canvasContext, xScroll, yScroll) {
