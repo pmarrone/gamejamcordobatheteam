@@ -338,7 +338,7 @@ function GameObjectManager()
     this.MouseDownHook = function(evt) {
         for (var x = 0; x < this.gameObjects.length; ++x) {
             if (this.gameObjects[x].MouseDown) {
-                this.gameObjects[x].MouseDown(event);
+                this.gameObjects[x].MouseDown(evt);
             }
         }
     }
@@ -346,7 +346,7 @@ function GameObjectManager()
     this.MouseMoveHook = function (evt) {
         for (var x = 0; x < this.gameObjects.length; ++x) {
             if (this.gameObjects[x].MouseMove) {
-                this.gameObjects[x].MouseMove(event);
+                this.gameObjects[x].MouseMove(evt);
             }
         }
     }
