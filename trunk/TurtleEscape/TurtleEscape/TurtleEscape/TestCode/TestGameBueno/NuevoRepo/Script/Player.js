@@ -15,7 +15,7 @@ function Player() {
     var climbZOffset = 4;
     var alreadyReset = false;
     this.climbStage = 0;
-    this.climbFnishStage = 17;
+    this.climbFinishStage = 17;
     this.lastKeyCode = 0;
     	
     this.correctHitFrames = 0;
@@ -115,7 +115,7 @@ function Player() {
         g_KeyHelping.isClimbing(true);
 
         this.keyHandler.SetKeys(87, 83);
-        this.keyHandler.impulse *= 0.5;
+        //this.keyHandler.impulse *= 0.5;
 
         doState = climb;
         this.updateAnimation();
@@ -144,14 +144,11 @@ function Player() {
     {
 		if (this.isClimbing) {
 			this.setAnimation(g_ResourceManager.climb, 17,-1);
-		} else if (this.right && this.left)
+		} else if (this.isStopped){
             this.setAnimation(g_ResourceManager.idleRight, 6, 6);
-        else if (this.right)
+        } else {
             this.setAnimation(g_ResourceManager.runRight, 8, 15);
-        else if (this.left)
-            this.setAnimation(g_ResourceManager.runRight, 8, 15);
-        else 
-            this.setAnimation(g_ResourceManager.idleRight, 6, 6);
+		}
     }
 
     /**
@@ -173,7 +170,7 @@ function Player() {
             g_ApplicationManager.openGameOverMenu();
         }
 
-        doState(this.self);
+        doState(this.self, dt);
 
         g_followingTurtle = (g_mainMagma.x < (this.x) - this.screenBorder);
         if (g_followingTurtle) {
@@ -184,18 +181,16 @@ function Player() {
         //g_ApplicationManager.updateScore();
     }
 	
-	function run(self) {
-		self.keyHandler.update();
+	function run(self, dt) {
+		self.keyHandler.update(dt);
 		var updateRequired = false;
 		if (self.keyHandler.impulse > 0){
 			self.x += self.speed * (self.keyHandler.impulse / self.keyHandler.resetImpulse);
-			self.right = true;
 			if (self.isStopped){				
 				self.isStopped = false;
 				updateRequired = true;
 			}
 		} else {
-			self.right = false;
 			if (!self.isStopped)
 			{
 				updateRequired = true;
@@ -212,9 +207,9 @@ function Player() {
 
 	var oldFrame = 0;
 
-	function climb(self) {
+	function climb(self, dt) {
 	    
-		self.keyHandler.update();
+		self.keyHandler.update(dt);
 		var updateRequired = false;
 		if (self.keyHandler.impulse > 0){
 		    self.climbStage += 0.16 * (self.keyHandler.impulse / self.keyHandler.resetImpulse);
@@ -234,7 +229,7 @@ function Player() {
             }
 
             self.setFrame(parseInt(self.climbStage));
-		    if (self.climbStage > self.climbFnishStage) {
+		    if (self.climbStage > self.climbFinishStage) {
 		        //Stop climbing
 		        self.climbStage = 0;
 		        self.isClimbing = false;
@@ -242,7 +237,7 @@ function Player() {
 		        self.keyHandler.SetKeys(65, 68);
 
 		        self.left = false;
-		        self.right = false;
+		        self.right = true;
 
 		        self.y -= climbYOffset;
                 doState = run;

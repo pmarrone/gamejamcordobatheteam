@@ -1,5 +1,7 @@
 function KeySwitchHandler(keyOne, keyTwo) {
 
+	var timeSinceLastCombo = 0;
+	
     var achivCounter = 0;
     var achivNext = 0;
 
@@ -71,7 +73,8 @@ function KeySwitchHandler(keyOne, keyTwo) {
 		
 	}
 
-	this.update = function () {
+	this.update = function (dt) {
+		timeSinceLastCombo += dt;
 	    getImpulse = false;
 	    if ((this.stage == 0 || this.stage == -1) && this.isKeyOnePressed && this.isKeyTwoPressed) {
 	        this.stage = 0;
@@ -80,7 +83,6 @@ function KeySwitchHandler(keyOne, keyTwo) {
 	    } else if (this.stage == 1 && this.isKeyOnePressed && !this.isKeyTwoPressed) {
 	        this.stage = 1;
 	    } else if (this.stage == 1 && this.isKeyOnePressed && this.isKeyTwoPressed) {
-	        //	        g_SoundManager.PlayRecycled(g_SoundManager.steep1);
 	        g_score++;
 	        achivCounter++;
 	        this.stage = 2;
@@ -92,23 +94,22 @@ function KeySwitchHandler(keyOne, keyTwo) {
 	    } else if (this.stage == 3 && !this.isKeyOnePressed && this.isKeyTwoPressed) {
 	        this.stage = 3;
 	    } else if (this.stage == 3 && this.isKeyOnePressed && this.isKeyTwoPressed) {
-	        //	        g_SoundManager.PlayRecycled(g_SoundManager.steep2);
 	        g_score++;
 	        achivCounter++;
 	        this.stage = 0;
 	        getImpulse = true;
 	    } else {
 	        this.stage = -1;
-	        this.impulse = 0;
+	        //this.impulse = 0;
 	        this.isActive = false;
 	    }
-
 	    if (getImpulse) {
-	        this.impulse = this.resetImpulse;
+	        this.impulse +=  1 - this.impulse * 0.05; //+ (impulse * 0.002); //this.resetImpulse;			
+			timeSinceLastCombo = 0;
 	        this.isActive = true;
 	    } else {
 	        if (this.impulse > 0.1) {
-	            this.impulse -= 0.5 + Math.pow((this.impulse), 2) * 0.0005;
+	            this.impulse -= 5.5 * dt;// + Math.pow((this.impulse), 2) * 0.0005;
 	            this.isActive = true;
 	        } else {
 	            this.isActive = false;
